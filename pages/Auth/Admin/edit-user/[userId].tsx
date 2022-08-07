@@ -131,13 +131,13 @@ export async function getStaticProps(context: any) {
   return {
     props: {
       user: {
-        id: user?._id.toString(),
-        name: user?.name,
-        email: user?.email,
-        username: user?.username,
-        phoneNumber: user?.phoneNumber,
-        dateOfBirth: user?.dateOfBirth,
-        address: user?.address,
+        id: user?._id.toString() || null,
+        name: user?.name || null,
+        email: user?.email || null,
+        username: user?.username || null,
+        phoneNumber: user?.phoneNumber || null,
+        dateOfBirth: user?.dateOfBirth || null,
+        address: user?.address || null,
       },
       // fetchResponseError: { errorMsg: fetchResponseErrorMsg },
     },

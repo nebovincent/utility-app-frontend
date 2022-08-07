@@ -54,7 +54,6 @@ export async function getStaticProps(context: any) {
   // fetching one todo
 
   const todoId = context.params.todoId;
-
   const todo_id = {
     todoId: todoId,
   };
@@ -84,10 +83,10 @@ export async function getStaticProps(context: any) {
   return {
     props: {
       todo: {
-        id: todo?._id.toString(),
-        name: todo?.name,
-        description: todo?.description,
-        date: todo?.date,
+        id: todo?._id.toString() || null,
+        name: todo?.name || null,
+        description: todo?.description || null,
+        date: todo?.date || null,
       },
     },
     revalidate: 1,

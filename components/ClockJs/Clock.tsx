@@ -51,7 +51,7 @@ const FooterLink = styled.a`
   }
 `;
 
-const Header = styled.header`
+const Header = styled("header")<{ showHeader: any }>`
   opacity: ${(props: any) => (props.showHeader ? 1 : 0)};
   transition: opacity 1s ease-in;
 `;

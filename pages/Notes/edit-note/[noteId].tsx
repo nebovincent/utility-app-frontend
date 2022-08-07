@@ -10,9 +10,6 @@ function EditNotePage({ note }: Props) {
   const router = useRouter();
   const { noteId } = router.query;
 
-
-
-
   return (
     <div>
       <EditNote note={note} />
@@ -85,8 +82,8 @@ export async function getStaticProps(context: any) {
   return {
     props: {
       note: {
-        id: note?._id.toString(),
-        note: note?.note,
+        id: note?._id.toString() || null,
+        note: note?.note || null,
       },
     },
     revalidate: 1,
