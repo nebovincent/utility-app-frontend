@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  color: white !important;
+  /* overflow-y: auto; */
+  /* background-color: black; */
+}
+
+table {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+p {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+li {
+  /* list-style-type: none;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important; */
+}
+
+/* restyling boostrap css table */
+
+table {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+th {
+  font-family: 'Segoe UI', Ta/specimen/PT+Sans+Narrowhoma, Geneva, Verdana, sans-serif;
+}
+
+.table-light {
+  --bs-table-bg: #f8f9fa;
+  --bs-table-striped-bg: #ecedee;
+  --bs-table-striped-color: #000;
+  --bs-table-active-bg: #dfe0e1;
+  --bs-table-active-color: #000;
+  --bs-table-hover-bg: #922B21 !important;
+  --bs-table-hover-color: white !important;
+  color: #922B21 !important;
+  border-color: transparent !important;
+  border-radius: 20px !important;
+}
+
+td {
+  color: #000;
+  /* font-family: 'Diplomata SC', cursive; */
+  font-family: 'M PLUS 1 Code', sans-serif;
+
+
+}
+
+
+/* restyling boostrap css table */
+
+
+input, input:focus {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  outline: none;
+}
+
+textarea:focus, select:focus {
+  outline: none;
+}
+
+
+/* mapbox */
+.map-container {
+  height: 400px;
+}
+
+
+@media screen and (min-device-width: 1211px) {
+  .map-container {
+
+    /* width: 70%; */
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+
+  }
+}
+
+/* mapbox */
+
+/* loading redirection text */
+.loadingRedirectionText {
+  position: absolute;
+  top: 60%;
+  right: 23%;
+  text-align: center;
+}
+
+/* loading redirection text */
+
+input:disabled {
+  background-color: rgba(255, 255, 255, 0.791);
+}

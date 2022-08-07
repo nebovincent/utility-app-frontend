@@ -1,0 +1,13 @@
+.layout__container {
+    position: relative;
+    background-color: black;
+    height: 100vh;
+}
+
+.nav__main {
+    position: fixed !important;
+}
+
+.navspace {
+    height: 60px
+}

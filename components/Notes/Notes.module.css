@@ -1,0 +1,97 @@
+.notes__main_container {
+    background-color: black;
+    padding: 70px 30px 0px 30px;
+    overflow-y: scroll;
+    height: 100%;
+    position: relative;
+}
+
+.notes__container {
+    padding: 50px 0px;
+}
+
+.notes__container_child_area_wrapper {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.notes__container_child_area {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: black;
+    padding: 10px;
+
+}
+
+.notes__container h3 {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.notes__container h5 {
+    color: white;
+    text-align: center;
+    margin-bottom: 10px;
+    font-family: 'Gentium Book Plus', serif;
+}
+
+.notes__container_child {
+
+    margin: auto;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    width: fit-content;
+
+}
+
+.note__area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+}
+
+.note__desc_area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.note__desc_area p {
+    text-align: center;
+    line-height: 30px;
+}
+
+.note__desc_area p span {
+    font-weight: 700;
+}
+
+
+
+.note__desc_area p:hover {
+    color: #922B21;
+}
+
+.notes__actions {
+    display: flex;
+    gap: 40px;
+}
+
+.action__icon {
+    font-size: 20px;
+}
+
+.action__icon:hover {
+    color: #922B21;
+}
+
+@media screen and (min-device-width: 1211px) {
+    .notes__main_container {
+        padding: 150px 30px 0px 30px;
+
+    }
+}

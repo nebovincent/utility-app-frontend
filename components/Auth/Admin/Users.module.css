@@ -1,0 +1,28 @@
+.users__main_container {
+    background-color: black;
+    padding: 70px 30px 0px 30px;
+    overflow-y: scroll;
+    height: 100%;
+    position: relative;
+}
+
+.errorReport {
+    text-align: center;
+    padding: 20px 0px;
+    color: red;
+}
+
+.successResText {
+    text-align: center;
+    padding: 20px 0px;
+    color: yellowgreen;
+}
+
+.users__main_container h1 {
+    text-align: center;
+    color: #922B21;
+}
+
+/* .users__table_container {
+    padding: 30px 0px;
+} */

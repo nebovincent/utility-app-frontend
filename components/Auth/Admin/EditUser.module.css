@@ -1,0 +1,81 @@
+.register__main_container {
+    background-color: black;
+    padding: 70px 30px 0px 30px;
+    overflow-y: scroll;
+    /* height: 100%; */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* min-height: 75vh; */
+    overflow-y: scroll;
+}
+
+.register__main {
+    margin: auto;
+}
+
+
+.register__main h1 {
+    text-align: center;
+    padding: 2px;
+    color: #922B21;
+}
+
+.register__main h3 {
+    text-align: center;
+}
+
+.register__form_main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.register__form_main label {
+    text-align: center;
+    padding: 20px;
+}
+
+.register__form_main input {
+    width: 300px;
+    /* border: 3px solid white; */
+    border-radius: 10px;
+    padding: 4px;
+    color: black;
+}
+
+.register__form_main input:focus {
+    border: 3px solid #922B21;
+
+}
+
+.submitBtn {
+    padding: 5px 10px;
+    border: 3px solid #922B21;
+    border-radius: 5px;
+    margin: 30px 100px;
+    background-color: white;
+    color: #922B21;
+}
+
+.submitBtn:focus {
+    border: 3px solid white;
+    background-color: #922B21;
+    color: white;
+}
+
+@media screen and (max-device-width: 400px) {
+    .register__form_main input {
+        width: 250px;
+    }
+}
+
+@media screen and (min-device-width: 514px) and (max-device-width: 580px) {}
+
+@media screen and (min-device-width: 581px) and (max-device-width: 768px) {}
+
+@media screen and (min-device-width: 769px) and (max-device-width: 1210px) {}
+
+@media screen and (min-device-width: 1211px) {}

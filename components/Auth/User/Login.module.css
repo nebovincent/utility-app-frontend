@@ -1,0 +1,134 @@
+.login__main_container {
+    background-color: black;
+    padding: 70px 30px 0px 30px;
+    overflow-y: scroll;
+    /* height: 100%; */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 75vh;
+    overflow-y: scroll;
+}
+
+.login__main {
+    margin: auto;
+}
+
+
+.login__main h1 {
+    text-align: center;
+    padding: 2px;
+    color: #922B21;
+}
+
+.login__main h3 {
+    text-align: center;
+}
+
+
+.successMsg {
+    color: greenyellow !important;
+}
+
+.errorMsg {
+    color: red !important;
+}
+
+.login__main p {
+    text-align: center;
+    padding: 2px;
+    color: red;
+}
+
+.login__form_main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login__form_main label {
+    text-align: center;
+    padding: 20px;
+}
+
+.login__form_main_input {
+    width: 300px;
+    border-radius: 10px;
+    padding: 4px;
+    color: black;
+}
+
+.login__form_main_input_password {}
+
+.login__form_main_input:focus {
+    border: 3px solid #922B21;
+}
+
+
+
+
+.showPassMainArea {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    width: 300px;
+    border-radius: 10px;
+    padding: 4px;
+    color: black;
+}
+
+.showPassMainArea:focus-within {
+    border: 3px solid #922B21;
+}
+
+.showPassIcons {
+    padding: 0px 10px;
+    color: black;
+}
+
+.submitBtn {
+    padding: 5px 10px;
+    border: 3px solid #922B21;
+    border-radius: 5px;
+    margin: 30px 100px;
+    background-color: white;
+    color: #922B21;
+}
+
+.submitBtn:focus {
+    border: 3px solid white;
+    background-color: #922B21;
+    color: white;
+}
+
+@media screen and (max-device-width: 400px) {
+    .login__form_main_input {
+        width: 250px;
+    }
+
+    .showPassMainArea {
+        width: 250px;
+
+    }
+}
+
+.not_a_user_yet {
+    color: white !important;
+    margin-top: 50px !important;
+    padding: 0px 0px;
+}
+
+.not_a_user_yet span {
+    color: #922B21;
+    font-weight: 700;
+}
+
+@media screen and (min-device-width: 514px) and (max-device-width: 580px) {}
+
+@media screen and (min-device-width: 581px) and (max-device-width: 768px) {}
+
+@media screen and (min-device-width: 769px) and (max-device-width: 1210px) {}
+
+@media screen and (min-device-width: 1211px) {}

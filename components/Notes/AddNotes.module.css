@@ -1,0 +1,143 @@
+.addTodo__main_container {
+    padding: 70px 0px 0px 0px;
+    margin: auto;
+}
+
+
+
+.form__main_area {
+    margin: auto;
+    /* position: relative; */
+}
+
+.form__main_area h3 {
+    text-align: center;
+    font-family: 'Trispace', sans-serif;
+    color: white;
+
+}
+
+.form_style_3 {
+    max-width: 450px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans_serif;
+}
+
+.h5:nth-child(1) {
+    color: greenyellow;
+    text-align: center;
+    padding: 10px;
+}
+
+.h5:nth-child(2) {
+    color: red;
+    padding: 10px;
+    text-align: center;
+
+}
+
+
+.form_style_3 label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.form_style_3 label>span {
+    float: left;
+    width: 100px;
+    color: #641E16;
+    font-weight: bold;
+    font-size: 13px;
+    text-shadow: 1px 1px 1px #fff;
+}
+
+.form_style_3 fieldset {
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    margin: 0px 0px 10px 0px;
+    border: 1px solid white;
+    padding: 20px;
+    background: white;
+    box-shadow: inset 0px 0px 15px white;
+    -moz-box-shadow: inset 0px 0px 15px white;
+    -webkit-box-shadow: inset 0px 0px 15px white;
+    /* #641E16, #7B241C, #922B21 */
+}
+
+.form_style_3 fieldset legend {
+    color: #641E16;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    border-radius: 5px 5px 0px 0px;
+    -webkit-border-radius: 5px 5px 0px 0px;
+    -moz-border-radius: 5px 5px 0px 0px;
+    background: white;
+    padding: 0px 8px 3px 8px;
+    box-shadow: -0px -1px 2px #F1F1F1;
+    -moz-box-shadow: -0px -1px 2px #F1F1F1;
+    -webkit-box-shadow: -0px -1px 2px #F1F1F1;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.form_style_3 textarea {
+    width: 250px;
+    height: 100px;
+}
+
+.form_style_3 input[type=text],
+.form_style_3 input[type=date],
+.form_style_3 input[type=datetime],
+.form_style_3 input[type=datetime-local],
+.form_style_3 input[type=number],
+.form_style_3 input[type=search],
+.form_style_3 input[type=time],
+.form_style_3 input[type=url],
+.form_style_3 input[type=email],
+.form_style_3 select,
+.form_style_3 textarea {
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border: 1px solid #641E16;
+    outline: none;
+    color: #641E16;
+    padding: 5px 8px 5px 8px;
+    box-shadow: inset 1px 1px 4px #FFD5E7;
+    -moz-box-shadow: inset 1px 1px 4px #FFD5E7;
+    -webkit-box-shadow: inset 1px 1px 4px #FFD5E7;
+    background: white;
+    width: 50%;
+}
+
+.form_style_3 input[type=submit],
+.form_style_3 input[type=button] {
+    background: #922B21;
+    border: 1px solid #922B21;
+    padding: 5px 15px 5px 15px;
+    color: white;
+    box-shadow: inset -1px -1px 3px #922B21;
+    -moz-box-shadow: inset -1px -1px 3px #922B21;
+    -webkit-box-shadow: inset -1px -1px 3px #922B21;
+    border-radius: 3px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    font-weight: bold;
+}
+
+.requi#641E16 {
+    color: #641E16;
+    font-weight: normal;
+}
+
+/* edit todo section */
+.editNote__main_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+/* edit todo section */

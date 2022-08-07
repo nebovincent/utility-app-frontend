@@ -1,0 +1,31 @@
+.todo__main_container {
+    background-color: black;
+    padding: 70px 30px 0px 30px;
+    overflow: scroll;
+    height: 100%;
+    position: relative;
+}
+
+.table__container {
+    padding: 20px 0px;
+
+
+}
+
+.table__container h3 {
+    text-align: center;
+    color: white;
+}
+
+.table__container h5 {
+    color: white;
+    text-align: center;
+    margin-bottom: 10px;
+    font-family: 'Gentium Book Plus', serif;
+}
+
+@media screen and (min-device-width: 1211px) {
+    .todo__main_container {
+        padding: 150px 30px 0px 30px;
+    }
+}

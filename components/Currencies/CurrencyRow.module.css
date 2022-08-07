@@ -1,0 +1,24 @@
+.main {
+    color: black;
+}
+
+.main input {
+    border-radius: 10px;
+    border: 2px solid #922B21;
+    padding: 5px;
+    width: 72%;
+}
+
+.main select {
+    margin-left: 10px;
+    padding: 6.5px;
+    border: 2px solid #922B21;
+    border-radius: 10px;
+}
+
+@media screen and (min-device-width: 1211px) {
+    .main input {
+
+        width: 375px;
+    }
+}

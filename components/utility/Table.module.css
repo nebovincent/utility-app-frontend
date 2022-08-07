@@ -1,0 +1,42 @@
+.table__wrapper {
+    padding: 0px 0px 40px 0px;
+    overflow: scroll;
+}
+
+
+
+.actionBtn__main {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+.actionBtn__main div {
+    display: flex;
+    gap: 30px;
+}
+
+.actions__icon {
+    font-size: 20px;
+}
+
+.table_th_user_table {}
+
+.table_th_actions_user_table {
+    text-align: center;
+}
+
+.user_table_td_text {}
+
+.actionBtn__main_user_table {}
+
+/* .Pag {
+    background-color: blue;
+} */
+
+.pagination_main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}

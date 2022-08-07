@@ -1,0 +1,42 @@
+.currencies__container_main {
+    background-color: black;
+    padding: 70px 30px 0px 30px;
+    overflow-y: scroll;
+    height: 100%;
+    position: relative;
+
+
+}
+
+.main__wrapper {
+    /* trying to center */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    text-align: center;
+    /* trying to center */
+}
+
+.main h1 {
+    padding: 20px;
+    color: #922B21;
+    font-weight: bold;
+
+
+}
+
+.main h3 {
+    font-family: 'Gentium Book Plus', serif;
+}
+
+.equals {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+@media screen and (min-device-width: 1211px) {
+    .currencies__container_main {
+        padding: 150px 30px 0px 30px;
+    }
+}

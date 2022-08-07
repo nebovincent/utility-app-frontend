@@ -1,0 +1,19 @@
+.wrapper {
+    /* trying to center */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    text-align: center;
+    background-color: black;
+    /* trying to center */
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    flex-direction: column;
+    gap: 30px;
+}
