@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import classes from "components/Currencies/Currencies.module.css";
 import Container from "components/utility/Container";
-import CurrencyRow from "./CurrencyRow";
+import CurrencyRow from "components/Currencies/CurrencyRow";
 import nextConfig from "next.config";
 import { basename } from "path";
 

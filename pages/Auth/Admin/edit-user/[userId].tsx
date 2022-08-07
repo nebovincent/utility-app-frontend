@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import EditUser from "../../../../components/Auth/Admin/EditUser";
+import EditUser from "components/Auth/Admin/EditUser";
 import { useRouter } from "next/router";
 import { MongoClient, ObjectId } from "mongodb";
 import * as mongoose from "mongoose";

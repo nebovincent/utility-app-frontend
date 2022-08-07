@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import Navigation from "./Navigation";
+import Navigation from "components/utility/Navigation";
 import UtilContext from "context/util-context";
 import classes from "components/utility/Layout.module.css";
-import Container from "./Container";
+import Container from "components/utility/Container";
 import { Props } from "types/types";
 
 const Layout = (props: Props) => {

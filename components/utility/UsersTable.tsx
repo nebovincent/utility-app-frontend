@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import classes from "components/utility/Table.module.css";
-import Container from "./Container";
+import Container from "components/utility/Container";
 import { Props, allUsersType } from "types/types";
 import {
   FiEdit,

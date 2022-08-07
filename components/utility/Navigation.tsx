@@ -6,7 +6,7 @@ import UtilContext from "context/util-context";
 import AuthContext from "context/auth-context";
 import { FaNodeJs } from "react-icons/fa";
 import Link from "next/link";
-import Container from "./Container";
+import Container from "components/utility/Container";
 import { Props } from "types/types";
 import Image from "next/image";
 import nextConfig from "next.config";

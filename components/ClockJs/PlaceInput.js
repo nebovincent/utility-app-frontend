@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import { timezones } from "./data/timezones";
+import { timezones } from "components/ClockJs/data/timezones";
 
 const StyledInput = styled.input`
   outline: none;

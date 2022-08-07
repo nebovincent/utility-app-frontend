@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useCallback, useState } from "react";
 import classes from "components/Notes/Notes.module.css";
-import AddNotes from "./AddNotes";
+import AddNotes from "components/Notes/AddNotes";
 import Container from "components/utility/Container";
 import { FiTrash2, FiEdit } from "react-icons/fi";
 import PageLoader from "components/utility/PageLoader";

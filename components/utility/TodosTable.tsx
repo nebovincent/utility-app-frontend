@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import classes from "components/utility/Table.module.css";
-import Container from "./Container";
+import Container from "components/utility/Container";
 import { fetchedTodos, Props } from "types/types";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { useRouter } from "next/router";

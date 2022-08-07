@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 import "normalize.css";
 import styled from "styled-components";
 
-import { timezones as tz } from "./data/timezones";
-import LocationDisplay from "./LocationDisplay";
-import PlaceInput from "./PlaceInput";
-import classes from "./Clock.module.css";
+import { timezones as tz } from "components/ClockJs/data/timezones";
+import LocationDisplay from "components/ClockJs/LocationDisplay";
+import PlaceInput from "components/ClockJs/PlaceInput";
+import classes from "components/ClockJs/Clock.module.css";
 import PaginationComponent from "components/utility/PaginationComponent";
 
 function lsTest() {
