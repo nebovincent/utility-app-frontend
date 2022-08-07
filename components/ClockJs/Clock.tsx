@@ -52,21 +52,21 @@ const FooterLink = styled.a`
 `;
 
 const Header = styled.header`
-  opacity: ${(props) => (props.showHeader ? 1 : 0)};
+  opacity: ${(props: any) => (props.showHeader ? 1 : 0)};
   transition: opacity 1s ease-in;
 `;
 
 export default function Clock() {
-  const [clocks, setClocks] = useState([]);
-  const [showHeader, setShowHeader] = useState(true);
+  const [clocks, setClocks] = useState<any>([]);
+  const [showHeader, setShowHeader] = useState<any>(true);
 
   useEffect(() => {
     if (lsTest() === true) {
       const hasClocksInStorage =
         localStorage.getItem("clocks") &&
-        JSON.parse(localStorage.getItem("clocks")).length > 0;
+        JSON.parse(localStorage.getItem("clocks") as any).length > 0;
       const storedClocks = hasClocksInStorage
-        ? JSON.parse(localStorage.getItem("clocks"))
+        ? JSON.parse(localStorage.getItem("clocks") as any)
         : null;
       if (hasClocksInStorage) {
         setClocks(storedClocks);
@@ -83,13 +83,13 @@ export default function Clock() {
     }
   }, [clocks]);
 
-  const addClock = (city) => {
+  const addClock = (city: any) => {
     setClocks([city, ...clocks]);
   };
 
-  const removeClock = (id) => {
+  const removeClock = (id: any) => {
     setClocks(
-      clocks.filter((city) => city.fields.geonameid !== parseInt(id, 10))
+      clocks.filter((city: any) => city.fields.geonameid !== parseInt(id, 10))
     );
   };
 
@@ -104,7 +104,7 @@ export default function Clock() {
   const numberOfPages = clocks?.length && clocks?.length / itemsPerPage;
 
   //change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber: any) => setCurrentPage(pageNumber);
   const prevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -133,7 +133,7 @@ export default function Clock() {
           <PlaceInput addClock={addClock} />
         </Header>
         {clocks &&
-          currentItems.map((city) => (
+          currentItems.map((city: any) => (
             <LocationDisplay
               key={city.id}
               removeClock={removeClock}

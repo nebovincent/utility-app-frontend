@@ -1,4 +1,4 @@
-import MapJs from "components/MapJS/MapJs";
+import MapJs from "components/MapJs/MapJs";
 import React from "react";
 
 const MapPage = () => {

@@ -8,8 +8,8 @@ import "mapbox-gl/dist/mapbox-gl.css";
 function MapJs() {
   mapboxgl.accessToken =
     "pk.eyJ1IjoibmVib3ZpbmNlbnQ1MCIsImEiOiJjbDU2cTc2NzAxbHVsM290ZHByN3R3NndlIn0.G2K9OXRy3PqOO1_2SHXMKg";
-  const mapContainer = useRef(null);
-  const map = useRef(null);
+  const mapContainer = useRef<any>(null);
+  const map = useRef<any>(null);
   const [lng, setLng] = useState(-70.9);
   const [lat, setLat] = useState(42.35);
   const [zoom, setZoom] = useState(9);
