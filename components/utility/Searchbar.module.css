@@ -1,0 +1,48 @@
+@media screen and (min-device-width: 1211px) {
+
+
+    .search__input_main_area {
+        width: 30%;
+    }
+
+
+}
+
+.search__input_main_area {
+    display: flex;
+    height: 40px;
+    background-color: white;
+    border-radius: 20px;
+
+    margin: auto;
+
+
+}
+
+.search__input_main_area:focus-within {
+    border: 2px solid greenyellow;
+}
+
+.search__input_main_area:focus-within {
+    border: 2px solid greenyellow;
+}
+
+.search__input {
+    padding: 10px;
+    color: black;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.search__input:focus {
+    padding: 10px;
+}
+
+.search__input_icon_area {
+    color: black;
+    background-color: transparent;
+    padding-right: 20px;
+    font-size: 20px;
+    border: none !important;
+    outline: none !important;
+}

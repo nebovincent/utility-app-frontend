@@ -9,6 +9,12 @@ import PageLoader from "components/utility/PageLoader";
 
 const Weather = () => {
   const authCtx = useContext(AuthContext);
+  let errors = {
+    input: { error: "", isEmpty: false },
+  };
+  const [errorState, setErrorState] = useState({
+    input: { error: "", isEmpty: false },
+  });
   const [location, setLocation] = useState({
     input: "",
     resolvedAddress: "",
@@ -18,32 +24,72 @@ const Weather = () => {
   });
 
   const setLocationInputState = (e: any) => {
+    setErrorState({
+      input: { error: "", isEmpty: false },
+    });
     setLocation({ ...location, input: e.target.value });
+  };
+
+  const resetLocation = () => {
+    setLocation({ ...location, input: "" });
+    setErrorState({
+      input: { error: "", isEmpty: false },
+    });
+  };
+  const resetErrors = () => {
+    setErrorState({
+      input: { error: "", isEmpty: false },
+    });
   };
 
   const checkWeather = async (e: any) => {
     e.preventDefault();
-    authCtx.reqLoadingStateHandler();
-    const response = await fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location.input}?key=Q23NTSAX396M5L2SGT8BPM5CQ`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        // credentials: "include",
-      }
-    );
-    const res = await response.json();
 
-    setLocation({
-      ...location,
-      resolvedAddress: res.resolvedAddress,
-      temp: res.currentConditions.temp,
-      conditions: res.currentConditions.conditions,
-      description: res.description,
-    });
-    authCtx.reqLoadingStateResetHandler();
+    if (!location.input.length) {
+      errors = {
+        input: { error: "This input can not be empty", isEmpty: true },
+      };
+      setErrorState({
+        ...errorState,
+        input: { error: "This input can not be empty", isEmpty: true },
+      });
+    }
+
+    if (!errors.input.isEmpty) {
+      authCtx.reqLoadingStateHandler();
+      console.log(location.input, "lll");
+      const response = await fetch(
+        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location.input}?key=Q23NTSAX396M5L2SGT8BPM5CQ`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          // credentials: "include",
+        }
+      );
+      authCtx.reqLoadingStateResetHandler();
+      const res = await response.json();
+
+      if (!response) {
+        setErrorState({
+          ...errorState,
+          input: {
+            ...errorState.input,
+            error: `Location ${location.input} is not a valid location`,
+          },
+        });
+      }
+
+      setLocation({
+        ...location,
+        resolvedAddress: res.resolvedAddress,
+        temp: res.currentConditions.temp,
+        conditions: res.currentConditions.conditions,
+        description: res.description,
+      });
+      // authCtx.reqLoadingStateResetHandler();
+    }
   };
 
   return (
@@ -64,6 +110,10 @@ const Weather = () => {
               <br />
               <span>example: New York City, USA</span>
             </p>
+
+            {errorState.input.isEmpty && (
+              <p className={classes.errors}>{errorState.input.error}</p>
+            )}
             <div className={classes.formAndInfoWrapper}>
               <form onSubmit={checkWeather}>
                 <div className={classes.search__input_main_area}>
@@ -72,7 +122,7 @@ const Weather = () => {
                     className={classes.search__input}
                     onChange={setLocationInputState}
                     value={location.input}
-                    onBlur={(e) => (e.target.value = "")}
+                    onFocus={resetLocation}
                   />
                   <button
                     className={classes.search__input_icon_area}

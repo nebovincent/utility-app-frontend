@@ -83,7 +83,6 @@
     font-size: 20px;
     border: none !important;
     outline: none !important;
-
 }
 
 .search__input:focus {
@@ -109,4 +108,9 @@
 
 .weatherIcon {
     font-size: 50px;
+}
+
+.errors {
+    text-align: center;
+    color: red;
 }

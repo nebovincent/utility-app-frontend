@@ -1,6 +1,11 @@
 import { MouseEventHandler, ReactNode } from "react";
 
 export interface Props {
+  onSubmit?: any;
+  onChange?: any;
+  value?: any;
+  onFocus?: any;
+  onBlur?: any;
   children?: React.ReactNode;
   className?: {};
   onClick?: any;

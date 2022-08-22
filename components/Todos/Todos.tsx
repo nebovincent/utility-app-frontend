@@ -10,6 +10,7 @@ import nextConfig from "next.config";
 import AuthContext from "context/auth-context";
 import { useRouter } from "next/router";
 import ProtectedRoutes from "components/utility/ProtectedRoutes";
+import Searchbar from "components/utility/Searchbar";
 
 const Todos = (props: Props) => {
   const utilCtx = useContext(UtilContext);
@@ -106,6 +107,31 @@ const Todos = (props: Props) => {
     authCtx.reqLoadingStateResetHandler();
   };
 
+  //search functionality section
+
+  const [searchInput, setSearchInput] = useState("");
+  const [searchErrors, setSearchErrors] = useState({});
+  const onSearch = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    const filteredTodos = allFetchedTodos.filter((todos) =>
+      todos.name?.includes(searchInput)
+    );
+    if (filteredTodos.length === 0) {
+      console.log("no match");
+    } else {
+      setAllFetchedTodos(filteredTodos);
+    }
+    console.log(filteredTodos);
+  };
+  const onChangeSearchInput = (e: any) => {
+    setSearchInput(e.target.value);
+  };
+  const resetSearchInput = useCallback(() => {
+    setSearchInput("");
+    onFetchTodos();
+  }, []);
+
+  //search functionality section
   return (
     <>
       {authCtx.reqLoadingState ? (
@@ -119,7 +145,18 @@ const Todos = (props: Props) => {
             />
             {allFetchedTodos.length > 0 && (
               <div className={classes.table__container}>
+                <div className={classes.search_main_area}>
+                  <h5>Search for a todo by name</h5>
+                  <Searchbar
+                    onSubmit={onSearch}
+                    onChange={onChangeSearchInput}
+                    value={searchInput}
+                    onFocus={resetSearchInput}
+                  />
+                </div>
+
                 <h3>List of Todos</h3>
+
                 {/* <h5>Click on a todo to view full information</h5> */}
 
                 <TodosTable
