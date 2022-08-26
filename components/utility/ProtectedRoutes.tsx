@@ -4,6 +4,7 @@ import AuthContext from "context/auth-context";
 import PageLoader from "components/utility/PageLoader";
 import { useRouter } from "next/router";
 import { JsxElement } from "typescript";
+import { server } from "config/index";
 
 function ProtectedRoutes({ children }: Props) {
   const router = useRouter();

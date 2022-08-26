@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 import moment from "moment";
 import AuthContext from "context/auth-context";
 import PaginationComponent from "./PaginationComponent";
+import { server } from "config/index";
 
 const UsersTable = ({
   allUsers,

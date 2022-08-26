@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "components/Currencies/CurrencyRow.module.css";
 import { Props } from "types/types";
+import { server } from "config/index";
 
 const CurrencyRow = (props: Props) => {
   const {

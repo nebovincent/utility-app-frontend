@@ -9,6 +9,7 @@ import nextConfig from "next.config";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import Link from "next/link";
 import PageLoader from "components/utility/PageLoader";
+import { server } from "config/index";
 
 const Login = () => {
   const authCtx = useContext(AuthContext);

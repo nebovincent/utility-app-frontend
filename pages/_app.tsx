@@ -11,6 +11,7 @@ import AuthContext, { AuthContextProvider } from "context/auth-context";
 import PageLoader from "components/utility/PageLoader";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap/dist/js/bootstrap.bundle.min";
+import { server } from "config/index";
 
 // css for google map
 import "components/Map/Map.css";

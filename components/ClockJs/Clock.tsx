@@ -8,6 +8,7 @@ import LocationDisplay from "components/ClockJs/LocationDisplay";
 import PlaceInput from "components/ClockJs/PlaceInput";
 import classes from "components/ClockJs/Clock.module.css";
 import PaginationComponent from "components/utility/PaginationComponent";
+import { server } from "config/index";
 
 function lsTest() {
   var test = "test";

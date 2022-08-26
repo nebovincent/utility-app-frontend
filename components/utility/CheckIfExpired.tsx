@@ -5,6 +5,7 @@ import UtilContext from "context/util-context";
 import PageLoader from "components/utility/PageLoader";
 import { useRouter } from "next/router";
 import { JsxElement } from "typescript";
+import { server } from "config/index";
 
 function CheckIfExpired({ children }: Props) {
   const router = useRouter();

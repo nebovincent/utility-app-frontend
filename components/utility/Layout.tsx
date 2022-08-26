@@ -4,6 +4,7 @@ import UtilContext from "context/util-context";
 import classes from "components/utility/Layout.module.css";
 import Container from "components/utility/Container";
 import { Props } from "types/types";
+import { server } from "config/index";
 
 const Layout = (props: Props) => {
   const utilCtx = useContext(UtilContext);

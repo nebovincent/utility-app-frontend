@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/router";
 import nextConfig from "next.config";
 import { Props, userLoginDetails, authUserProfileDetails } from "types/types";
+import { server } from "config/index";
 
 const AuthContext = React.createContext({
   userRole: "user",
@@ -77,14 +78,11 @@ export const AuthContextProvider = ({ children }: Props) => {
       "Access-Control-Allow-Credentials": "true",
     };
 
-    const response = await fetch(
-      `${nextConfig.env?.backend_url}/user/getcookie`,
-      {
-        method: "GET",
-        headers: headers,
-        credentials: "include",
-      }
-    );
+    const response = await fetch(`${server}/user/getcookie`, {
+      method: "GET",
+      headers: headers,
+      credentials: "include",
+    });
     const res = await response.json();
 
     if (res.status === "successful") {
@@ -139,15 +137,12 @@ export const AuthContextProvider = ({ children }: Props) => {
       "Access-Control-Allow-Credentials": "true",
     };
 
-    const response = await fetch(
-      `${nextConfig.env?.backend_url}/admin/get-all-users`,
-      {
-        method: "GET",
-        headers: headers,
-        credentials: "include",
-        // statusCode: 200,
-      }
-    );
+    const response = await fetch(`${server}/admin/get-all-users`, {
+      method: "GET",
+      headers: headers,
+      credentials: "include",
+      // statusCode: 200,
+    });
     const users = await response.json();
 
     return users.data.result;
@@ -173,15 +168,12 @@ export const AuthContextProvider = ({ children }: Props) => {
       "Access-Control-Allow-Credentials": "true",
     };
 
-    const response = await fetch(
-      `${nextConfig.env?.backend_url}/user/login-user`,
-      {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: headers,
-        credentials: "include",
-      }
-    );
+    const response = await fetch(`${server}/user/login-user`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: headers,
+      credentials: "include",
+    });
     const res = await response.json();
 
     if (res.status === "successful") {
@@ -215,15 +207,12 @@ export const AuthContextProvider = ({ children }: Props) => {
       "Access-Control-Allow-Methods": "POST,PATCH,OPTIONS",
       "Access-Control-Allow-Credentials": "true",
     };
-    const response = await fetch(
-      `${nextConfig.env?.backend_url}/user/logout-user`,
-      {
-        method: "POST",
-        body: JSON.stringify({ id: authUserId }),
-        headers: headers,
-        credentials: "include",
-      }
-    );
+    const response = await fetch(`${server}/user/logout-user`, {
+      method: "POST",
+      body: JSON.stringify({ id: authUserId }),
+      headers: headers,
+      credentials: "include",
+    });
 
     const res = await response.json();
     if (res) {

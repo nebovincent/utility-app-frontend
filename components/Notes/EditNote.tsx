@@ -8,6 +8,7 @@ import AuthContext from "context/auth-context";
 import UtilContext from "context/util-context";
 import ProtectedRoutes from "components/utility/ProtectedRoutes";
 import PageLoader from "components/utility/PageLoader";
+import { server } from "config/index";
 
 function EditNote({ note }: Props) {
   const authCtx = useContext(AuthContext);
@@ -40,16 +41,13 @@ function EditNote({ note }: Props) {
       "Access-Control-Allow-Credentials": "true",
     };
 
-    const response = await fetch(
-      `${nextConfig.env?.backend_url}/user/edit-note`,
-      {
-        method: "POST",
-        body: JSON.stringify(editedNote),
-        headers: headers,
-        credentials: "include",
-        // statusCode: 200,
-      }
-    );
+    const response = await fetch(`${server}/user/edit-note`, {
+      method: "POST",
+      body: JSON.stringify(editedNote),
+      headers: headers,
+      credentials: "include",
+      // statusCode: 200,
+    });
 
     const res = await response.json();
 

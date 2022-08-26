@@ -12,6 +12,7 @@ import Link from "next/link";
 // import axios, { AxiosResponse } from "axios";
 import PageLoader from "components/utility/PageLoader";
 import { v4 as uuidv4 } from "uuid";
+import { server } from "config/index";
 
 const Register = (props: Props) => {
   // states, declarations, variables and hooks
@@ -168,7 +169,7 @@ const Register = (props: Props) => {
       // using axios to make api call
 
       // const response: AxiosResponse = await axios.post(
-      //   `${nextConfig.env?.backend_url}/user/register-user`,
+      //   `${server}/user/register-user`,
       //   data,
       //   {
       //     headers: {
@@ -183,15 +184,12 @@ const Register = (props: Props) => {
 
       // using fetch to make api call
 
-      const response = await fetch(
-        `${nextConfig.env?.backend_url}/user/register-user`,
-        {
-          method: "POST",
-          body: data,
-          // no header needed for using fetch in this situation
-          credentials: "include",
-        }
-      );
+      const response = await fetch(`${server}/user/register-user`, {
+        method: "POST",
+        body: data,
+        // no header needed for using fetch in this situation
+        credentials: "include",
+      });
       const res = await response.json();
 
       // using fetch to make api call

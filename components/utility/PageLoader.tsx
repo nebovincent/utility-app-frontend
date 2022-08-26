@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import classes from "components/utility/PageLoader.module.css";
 import { useRouter } from "next/router";
+import { server } from "config/index";
 
 function PageLoader() {
   const router = useRouter();

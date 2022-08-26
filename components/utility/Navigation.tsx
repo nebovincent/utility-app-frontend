@@ -10,6 +10,7 @@ import Container from "components/utility/Container";
 import { Props } from "types/types";
 import Image from "next/image";
 import nextConfig from "next.config";
+import { server } from "config/index";
 
 const Navigation = (props: Props) => {
   const utilCtx = useContext(UtilContext);

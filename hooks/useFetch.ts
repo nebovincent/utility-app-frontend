@@ -1,3 +1,5 @@
+import { server } from "config/index";
+
 const useFetch = async (url: string, method: string) => {
   const headers = {
     "Content-Type": "application/json",

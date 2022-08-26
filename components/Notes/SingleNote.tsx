@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import ProtectedRoutes from "components/utility/ProtectedRoutes";
 import Container from "components/utility/Container";
 import classes from "components/Notes/SingleNote.module.css";
+import { server } from "config/index";
 
 function SingleNote({ note }: Props) {
   const [noteState, setNoteState] = useState({
@@ -22,7 +23,11 @@ function SingleNote({ note }: Props) {
           <div className={classes.notes__container_child}>
             {noteState?.note}
           </div>
-          <div onClick={() => {router.back();}}>
+          <div
+            onClick={() => {
+              router.back();
+            }}
+          >
             <span style={{ fontSize: "100px" }}>&#9198;</span>
             <h4>Go Back</h4>
           </div>

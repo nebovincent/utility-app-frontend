@@ -5,6 +5,7 @@ import classes from "components/Auth/User/ChangePassword.module.css";
 import nextConfig from "next.config";
 import AuthContext from "context/auth-context";
 import PageLoader from "components/utility/PageLoader";
+import { server } from "config/index";
 
 function ChangePassword() {
   const authCtx = useContext(AuthContext);
@@ -46,16 +47,13 @@ function ChangePassword() {
         "Access-Control-Allow-Methods": "POST,PATCH,OPTIONS",
         "Access-Control-Allow-Credentials": "true",
       };
-      const response = await fetch(
-        `${nextConfig.env?.backend_url}/user/change-password`,
-        {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: headers,
-          credentials: "include",
-          // statusCode: 200,
-        }
-      );
+      const response = await fetch(`${server}/user/change-password`, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: headers,
+        credentials: "include",
+        // statusCode: 200,
+      });
       const res = await response.json();
       if (res.status === "successful") {
         setSuccessResponse(res.data.message);

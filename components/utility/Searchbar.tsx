@@ -2,6 +2,8 @@ import React from "react";
 import { GoSearch } from "react-icons/go";
 import classes from "components/utility/Searchbar.module.css";
 import { Props } from "types/types";
+import { server } from "config/index";
+
 function Searchbar({ onSubmit, onChange, value, onFocus }: Props) {
   return (
     <>

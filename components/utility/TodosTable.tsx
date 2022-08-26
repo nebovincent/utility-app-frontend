@@ -4,6 +4,8 @@ import Container from "components/utility/Container";
 import { fetchedTodos, Props } from "types/types";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { useRouter } from "next/router";
+import { server } from "config/index";
+
 
 import PaginationComponent from "./PaginationComponent";
 

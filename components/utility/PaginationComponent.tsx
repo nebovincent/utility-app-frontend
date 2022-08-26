@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import classes from "components/utility/PaginationComponent.module.css";
+import { server } from "config/index";
 
 function PaginationComponent({
   className,

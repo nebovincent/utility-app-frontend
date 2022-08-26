@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { server } from "config/index";
 
 const UtilContext = React.createContext({
   showMenuState: false,

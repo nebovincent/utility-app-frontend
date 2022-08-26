@@ -6,6 +6,7 @@ import { WiCloud, WiDaySleetStorm } from "react-icons/wi";
 import nextConfig from "next.config";
 import AuthContext from "context/auth-context";
 import PageLoader from "components/utility/PageLoader";
+import { server } from "config/index";
 
 const Weather = () => {
   const authCtx = useContext(AuthContext);

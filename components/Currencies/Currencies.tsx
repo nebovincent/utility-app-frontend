@@ -4,6 +4,7 @@ import Container from "components/utility/Container";
 import CurrencyRow from "components/Currencies/CurrencyRow";
 import nextConfig from "next.config";
 import { basename } from "path";
+import { server } from "config/index";
 
 const Currencies = () => {
   const [currencyOptions, setCurrencyOptions] = useState<string[]>([]);

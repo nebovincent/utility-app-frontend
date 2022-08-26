@@ -4,6 +4,7 @@ import Container from "components/utility/Container";
 import { GoSearch } from "react-icons/go";
 import { BiGlobe } from "react-icons/bi";
 import Script from "next/script";
+import { server } from "config/index";
 
 const Map = () => {
   return (

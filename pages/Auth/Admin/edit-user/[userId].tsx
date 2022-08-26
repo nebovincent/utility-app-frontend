@@ -7,6 +7,7 @@ import { Props, allUsersType } from "types/types";
 import nextConfig from "next.config";
 import AuthContext from "context/auth-context";
 // const authCtx = useContext(AuthContext);
+import { server } from "config/index";
 
 function EditUserPage({ user }: Props) {
   const router = useRouter();
@@ -27,7 +28,7 @@ function getAllUsers(): any {
     "Access-Control-Allow-Credentials": "true",
   };
 
-  const response = fetch(`${nextConfig.env?.backend_url}/admin/get-all-users`, {
+  const response = fetch(`${server}/admin/get-all-users`, {
     method: "GET",
     headers: headers,
     credentials: "include",
@@ -53,15 +54,12 @@ export async function getStaticPaths() {
     "Access-Control-Allow-Credentials": "true",
   };
 
-  const response = await fetch(
-    `${nextConfig.env?.backend_url}/admin/get-all-users`,
-    {
-      method: "GET",
-      headers: headers,
-      credentials: "include",
-      // statusCode: 200,
-    }
-  );
+  const response = await fetch(`${server}/admin/get-all-users`, {
+    method: "GET",
+    headers: headers,
+    credentials: "include",
+    // statusCode: 200,
+  });
   const res = await response.json();
 
   const users = await res.data.result;
@@ -71,7 +69,7 @@ export async function getStaticPaths() {
   // const requestUsers = async () => {
   //   if (authCtx.userRole === "admin") {
   //     const response = await fetch(
-  //       `${nextConfig.env?.backend_url}/admin/get-all-users`,
+  //       `${server}/admin/get-all-users`,
   //       {
   //         method: "GET",
   //         headers: headers,
@@ -112,16 +110,13 @@ export async function getStaticProps(context: any) {
     "Access-Control-Allow-Credentials": "true",
   };
 
-  const response = await fetch(
-    `${nextConfig.env?.backend_url}/admin/get-one-user`,
-    {
-      method: "POST",
-      body: JSON.stringify(user_id),
-      headers: headers,
-      credentials: "include",
-      // statusCode: 200,
-    }
-  );
+  const response = await fetch(`${server}/admin/get-one-user`, {
+    method: "POST",
+    body: JSON.stringify(user_id),
+    headers: headers,
+    credentials: "include",
+    // statusCode: 200,
+  });
 
   const res = await response.json();
 

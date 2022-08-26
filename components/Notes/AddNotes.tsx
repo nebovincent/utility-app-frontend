@@ -5,6 +5,7 @@ import AuthContext from "context/auth-context";
 import UtilContext from "context/util-context";
 import { useRouter } from "next/router";
 import ProtectedRoutes from "components/utility/ProtectedRoutes";
+import { server } from "config/index";
 
 const AddNotes = ({ onSaveNote }: Props) => {
   const authCtx = useContext(AuthContext);
