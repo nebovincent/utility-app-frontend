@@ -37,12 +37,15 @@ const Notes = () => {
       "Access-Control-Allow-Credentials": "true",
     };
 
-    const response = await fetch(`${server}/user/delete-note`, {
-      method: "POST",
-      body: JSON.stringify(noteId),
-      headers: headers,
-      credentials: "include",
-    });
+    const response = await fetch(
+      `${nextConfig.env?.backend_url}/user/delete-note`,
+      {
+        method: "POST",
+        body: JSON.stringify(noteId),
+        headers: headers,
+        credentials: "include",
+      }
+    );
     const res = await response.json();
 
     if (res.status === "successful") {
@@ -60,12 +63,15 @@ const Notes = () => {
       "Access-Control-Allow-Credentials": "true",
     };
 
-    const response = await fetch(`${server}/user/get-all-notes`, {
-      method: "POST",
-      body: JSON.stringify(noteData),
-      headers: headers,
-      credentials: "include",
-    });
+    const response = await fetch(
+      `${nextConfig.env?.backend_url}/user/get-all-notes`,
+      {
+        method: "POST",
+        body: JSON.stringify(noteData),
+        headers: headers,
+        credentials: "include",
+      }
+    );
     const res = await response.json();
 
     setAllFetchedNotes(res.data.result);
@@ -88,13 +94,16 @@ const Notes = () => {
       "Access-Control-Allow-Credentials": "true",
     };
 
-    const response = await fetch(`${server}/user/add-note`, {
-      method: "POST",
-      body: JSON.stringify(newNote),
-      headers: headers,
-      credentials: "include",
-      // statusCode: 200,
-    });
+    const response = await fetch(
+      `${nextConfig.env?.backend_url}/user/add-note`,
+      {
+        method: "POST",
+        body: JSON.stringify(newNote),
+        headers: headers,
+        credentials: "include",
+        // statusCode: 200,
+      }
+    );
     const res = await response.json();
 
     if (res.status === "successful") {

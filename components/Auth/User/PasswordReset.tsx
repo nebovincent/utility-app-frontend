@@ -89,13 +89,16 @@ function ProfileChangePassword() {
         "Access-Control-Allow-Methods": "POST,PATCH,OPTIONS",
         "Access-Control-Allow-Credentials": "true",
       };
-      const response = await fetch(`${server}/user/reset-password`, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: headers,
-        credentials: "include",
-        // statusCode: 200,
-      });
+      const response = await fetch(
+        `${nextConfig.env?.backend_url}/user/reset-password`,
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: headers,
+          credentials: "include",
+          // statusCode: 200,
+        }
+      );
       const res = await response.json();
       console.log(res);
       if (res.status === "successful") {
@@ -137,12 +140,15 @@ function ProfileChangePassword() {
         "Access-Control-Allow-Methods": "POST,PATCH,OPTIONS",
         "Access-Control-Allow-Credentials": "true",
       };
-      const response = await fetch(`${server}/user/password-change-url-info`, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: headers,
-        credentials: "include",
-      });
+      const response = await fetch(
+        `${nextConfig.env?.backend_url}/user/password-change-url-info`,
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: headers,
+          credentials: "include",
+        }
+      );
       const res = await response.json();
       if (res.status === "successful") {
         const now = Date.now();

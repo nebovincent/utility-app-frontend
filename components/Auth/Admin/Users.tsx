@@ -29,12 +29,15 @@ const Users: React.FC = () => {
       "Access-Control-Allow-Credentials": "true",
     };
 
-    const response = await fetch(`${server}/admin/get-all-users`, {
-      method: "GET",
-      headers: headers,
-      credentials: "include",
-      // statusCode: 200,
-    });
+    const response = await fetch(
+      `${nextConfig.env?.backend_url}/admin/get-all-users`,
+      {
+        method: "GET",
+        headers: headers,
+        credentials: "include",
+        // statusCode: 200,
+      }
+    );
     const users = await response.json();
 
     setAllUsers(users.data.result);
@@ -52,13 +55,16 @@ const Users: React.FC = () => {
       "Access-Control-Allow-Credentials": "true",
     };
 
-    const response = await fetch(`${server}/admin/delete-user`, {
-      method: "POST",
-      body: JSON.stringify(userId),
-      headers: headers,
-      credentials: "include",
-      // statusCode: 200,
-    });
+    const response = await fetch(
+      `${nextConfig.env?.backend_url}/admin/delete-user`,
+      {
+        method: "POST",
+        body: JSON.stringify(userId),
+        headers: headers,
+        credentials: "include",
+        // statusCode: 200,
+      }
+    );
     const res = await response.json();
 
     if (res.status === "successful") {
@@ -84,13 +90,16 @@ const Users: React.FC = () => {
       "Access-Control-Allow-Credentials": "true",
     };
 
-    const response = await fetch(`${server}/admin/activate-user`, {
-      method: "POST",
-      body: JSON.stringify(userId),
-      headers: headers,
-      credentials: "include",
-      // statusCode: 200,
-    });
+    const response = await fetch(
+      `${nextConfig.env?.backend_url}/admin/activate-user`,
+      {
+        method: "POST",
+        body: JSON.stringify(userId),
+        headers: headers,
+        credentials: "include",
+        // statusCode: 200,
+      }
+    );
     const res = await response.json();
 
     if (res.status === "successful") {
@@ -115,13 +124,16 @@ const Users: React.FC = () => {
       "Access-Control-Allow-Credentials": "true",
     };
 
-    const response = await fetch(`${server}/admin/deactivate-user`, {
-      method: "POST",
-      body: JSON.stringify(userId),
-      headers: headers,
-      credentials: "include",
-      // statusCode: 200,
-    });
+    const response = await fetch(
+      `${nextConfig.env?.backend_url}/admin/deactivate-user`,
+      {
+        method: "POST",
+        body: JSON.stringify(userId),
+        headers: headers,
+        credentials: "include",
+        // statusCode: 200,
+      }
+    );
     const res = await response.json();
 
     if (res.status === "successful") {
@@ -147,13 +159,16 @@ const Users: React.FC = () => {
       "Access-Control-Allow-Credentials": "true",
     };
 
-    const response = await fetch(`${server}/admin/make-user-admin`, {
-      method: "POST",
-      body: JSON.stringify(userId),
-      headers: headers,
-      credentials: "include",
-      // statusCode: 200,
-    });
+    const response = await fetch(
+      `${nextConfig.env?.backend_url}/admin/make-user-admin`,
+      {
+        method: "POST",
+        body: JSON.stringify(userId),
+        headers: headers,
+        credentials: "include",
+        // statusCode: 200,
+      }
+    );
     const res = await response.json();
 
     if (res.status === "successful") {

@@ -28,12 +28,15 @@ export async function getStaticPaths(context: any) {
     "Access-Control-Allow-Credentials": "true",
   };
 
-  const response = await fetch(`${server}/user/get-note-collection`, {
-    method: "GET",
-    headers: headers,
-    credentials: "include",
-    // statusCode: 200,
-  });
+  const response = await fetch(
+    `${nextConfig.env?.backend_url}/user/get-note-collection`,
+    {
+      method: "GET",
+      headers: headers,
+      credentials: "include",
+      // statusCode: 200,
+    }
+  );
 
   const res = await response.json();
 
@@ -63,13 +66,16 @@ export async function getStaticProps(context: any) {
     "Access-Control-Allow-Credentials": "true",
   };
 
-  const response = await fetch(`${server}/user/get-one-note`, {
-    method: "POST",
-    body: JSON.stringify(note_id),
-    headers: headers,
-    credentials: "include",
-    // statusCode: 200,
-  });
+  const response = await fetch(
+    `${nextConfig.env?.backend_url}/user/get-one-note`,
+    {
+      method: "POST",
+      body: JSON.stringify(note_id),
+      headers: headers,
+      credentials: "include",
+      // statusCode: 200,
+    }
+  );
 
   const res = await response.json();
 

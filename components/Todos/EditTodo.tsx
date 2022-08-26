@@ -47,13 +47,16 @@ function EditTodo({ todo }: Props) {
       "Access-Control-Allow-Credentials": "true",
     };
 
-    const response = await fetch(`${server}/user/edit-todo`, {
-      method: "POST",
-      body: JSON.stringify(newTodo),
-      headers: headers,
-      credentials: "include",
-      // statusCode: 200,
-    });
+    const response = await fetch(
+      `${nextConfig.env?.backend_url}/user/edit-todo`,
+      {
+        method: "POST",
+        body: JSON.stringify(newTodo),
+        headers: headers,
+        credentials: "include",
+        // statusCode: 200,
+      }
+    );
     const res = await response.json();
 
     const setResStates = (): string => {
