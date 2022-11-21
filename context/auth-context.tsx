@@ -158,7 +158,7 @@ export const AuthContextProvider = ({ children }: Props) => {
   // useEffect for checking for browser cookie
   useEffect(() => {
     getCookie();
-  }, []);
+  });
   // useEffect for checking for browser cookie
 
   //Generally checking for cookie and setting state

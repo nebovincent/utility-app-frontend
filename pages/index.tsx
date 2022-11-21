@@ -5,7 +5,6 @@ import Image from "next/image";
 import styles from "styles/Home.module.css";
 import Script from "next/script";
 import PageLoader from "components/utility/PageLoader";
-import { server } from "config/index";
 
 const Home: NextPage = () => {
   return (

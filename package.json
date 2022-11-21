@@ -1,9 +1,6 @@
 {
   "name": "utility-app",
   "version": "0.1.0",
-  "engines": {
-    "node": "16.13.1"
-  },
   "private": true,
   "scripts": {
     "dev": "next dev",

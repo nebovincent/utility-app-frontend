@@ -9,12 +9,13 @@ import UtilContext from "context/util-context";
 import { useRouter } from "next/router";
 import CheckIfExpired from "components/utility/CheckIfExpired";
 import { server } from "config/index";
+import PasswordLinkExpired from "components/Random/PasswordLinkExpired";
 
 function ProfileChangePassword() {
   const authCtx = useContext(AuthContext);
   const utilCtx = useContext(UtilContext);
   const router = useRouter();
-  const [expired, setExpired] = useState(false);
+
   const [userEmail, setUserEmail] = useState<string | string[]>("");
   const [uniqueId, setUniqueId] = useState<string | string[]>("");
   const strongRegex = new RegExp(
@@ -119,20 +120,14 @@ function ProfileChangePassword() {
     }, 2000);
   };
 
+  let isExpired = utilCtx.expired;
+
+  // useEffect to check if expired or not
   useEffect(() => {
     const fetchUrlInfo = async () => {
       const data = {
         uuiduniqueId: router.query.uniqueId,
       };
-      //setting userEmail with email gotten from router query
-      if (router?.query.uniqueId) {
-        setUniqueId(router?.query?.uniqueId);
-      }
-      if (router?.query?.email) {
-        setUserEmail(router?.query?.email);
-      }
-
-      //setting userEmail with email gotten from router query
 
       const headers = {
         "Content-Type": "application/json",
@@ -157,25 +152,26 @@ function ProfileChangePassword() {
         console.log(expiresAt, "expires at");
         if (expiresAt > now) {
           console.log("still valid");
+          utilCtx.resetLoadingStateHandler();
         } else {
           console.log("no longer valid");
-          setExpired(true);
           utilCtx.setExpiredHandler();
+          utilCtx.resetLoadingStateHandler();
         }
       } else {
+        console.log("not successful");
       }
     };
     if (router.query.uniqueId) {
       fetchUrlInfo();
     }
-    // const timer = setTimeout(() => {
-    //   utilCtx.resetLoadingStateHandler();
-    // }, 5000);
-    // return () => {
-    //   clearTimeout(timer);
-    // };
-    utilCtx.resetLoadingStateHandler();
-  }, [router.query.uniqueId, utilCtx, router.query.email]);
+    // if (utilCtx.expired === true) {
+    //   router.push("/RandomPages/PasswordLinkExpiredPage");
+    //   console.log("expired page1");
+    // }
+  }, [router, utilCtx]);
+
+  // useEffect to check if expired or not
 
   return (
     <CheckIfExpired>
@@ -189,81 +185,72 @@ function ProfileChangePassword() {
           )}
 
           <div className={classes.profile_changepassword__main}>
-            {expired ? (
-              <p className={classes.pageExpired}>
-                Page expired, please request for a new link.
-              </p>
-            ) : (
-              <form className={classes.form_main} onSubmit={changePassword}>
-                <h1>Change Password</h1>
+            <form className={classes.form_main} onSubmit={changePassword}>
+              <h1>Change Password</h1>
 
-                <div>
-                  <label>New Password</label>
-                  <input
-                    type="text"
-                    onChange={(e) => {
-                      setPasswordInput({
-                        ...passwordInput,
-                        newPassword: e.target.value,
-                      });
-                    }}
-                    value={passwordInput.newPassword}
-                    onFocus={(e) => {
-                      setFormErrors({
-                        ...formErrors,
-                        newPassword: {
-                          invalid: false,
-                          isEmpty: false,
-                        },
-                      });
-                    }}
-                  />
-                  {formErrors.newPassword.invalid && (
-                    <p className={classes.formErrors}>
-                      Password must have atleast 6 characters, contain atleast
-                      one uppercase and one lowercase and also a special
-                      character.
-                    </p>
-                  )}
-                  {formErrors.newPassword.isEmpty && (
-                    <p className={classes.formErrors}>This field is Required</p>
-                  )}
-                </div>
-                <div>
-                  <label>Confirm New Password</label>
-                  <input
-                    type="text"
-                    onChange={(e) => {
-                      setPasswordInput({
-                        ...passwordInput,
-                        confirmNewPassword: e.target.value,
-                      });
-                    }}
-                    value={passwordInput.confirmNewPassword}
-                    onFocus={(e) => {
-                      setFormErrors({
-                        ...formErrors,
-                        confirmNewPassword: {
-                          passwordNotMatched: false,
-                          isEmpty: false,
-                        },
-                      });
-                    }}
-                  />
-                  {formErrors.confirmNewPassword.isEmpty && (
-                    <p className={classes.formErrors}>This field is Required</p>
-                  )}
-                  {formErrors.confirmNewPassword.passwordNotMatched && (
-                    <p className={classes.formErrors}>
-                      Password does not match
-                    </p>
-                  )}
-                </div>
-                <div>
-                  <button className={classes.submitBtn}>Submit</button>
-                </div>
-              </form>
-            )}
+              <div>
+                <label>New Password</label>
+                <input
+                  type="text"
+                  onChange={(e) => {
+                    setPasswordInput({
+                      ...passwordInput,
+                      newPassword: e.target.value,
+                    });
+                  }}
+                  value={passwordInput.newPassword}
+                  onFocus={(e) => {
+                    setFormErrors({
+                      ...formErrors,
+                      newPassword: {
+                        invalid: false,
+                        isEmpty: false,
+                      },
+                    });
+                  }}
+                />
+                {formErrors.newPassword.invalid && (
+                  <p className={classes.formErrors}>
+                    Password must have atleast 6 characters, contain atleast one
+                    uppercase and one lowercase and also a special character.
+                  </p>
+                )}
+                {formErrors.newPassword.isEmpty && (
+                  <p className={classes.formErrors}>This field is Required</p>
+                )}
+              </div>
+              <div>
+                <label>Confirm New Password</label>
+                <input
+                  type="text"
+                  onChange={(e) => {
+                    setPasswordInput({
+                      ...passwordInput,
+                      confirmNewPassword: e.target.value,
+                    });
+                  }}
+                  value={passwordInput.confirmNewPassword}
+                  onFocus={(e) => {
+                    setFormErrors({
+                      ...formErrors,
+                      confirmNewPassword: {
+                        passwordNotMatched: false,
+                        isEmpty: false,
+                      },
+                    });
+                  }}
+                />
+                {formErrors.confirmNewPassword.isEmpty && (
+                  <p className={classes.formErrors}>This field is Required</p>
+                )}
+                {formErrors.confirmNewPassword.passwordNotMatched && (
+                  <p className={classes.formErrors}>Password does not match</p>
+                )}
+              </div>
+              <div>
+                <button className={classes.submitBtn}>Submit</button>
+              </div>
+            </form>
           </div>
         </div>
       </Container>
