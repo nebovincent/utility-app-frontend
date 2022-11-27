@@ -31,16 +31,13 @@ const Todos = (props: Props) => {
       "Access-Control-Allow-Credentials": "true",
     };
 
-    const response = await fetch(
-      `${nextConfig.env?.backend_url}/user/delete-todo`,
-      {
-        method: "POST",
-        body: JSON.stringify(todoId),
-        headers: headers,
-        credentials: "include",
-        // statusCode: 200,
-      }
-    );
+    const response = await fetch(`${server}/user/delete-todo`, {
+      method: "POST",
+      body: JSON.stringify(todoId),
+      headers: headers,
+      credentials: "include",
+      // statusCode: 200,
+    });
     const res = await response.json();
 
     if (res.status === "successful") {
@@ -60,16 +57,13 @@ const Todos = (props: Props) => {
       "Access-Control-Allow-Credentials": "true",
     };
 
-    const response = await fetch(
-      `${nextConfig.env?.backend_url}/user/get-all-todos`,
-      {
-        method: "POST",
-        body: JSON.stringify(todoData),
-        headers: headers,
-        credentials: "include",
-        // statusCode: 200,
-      }
-    );
+    const response = await fetch(`${server}/user/get-all-todos`, {
+      method: "POST",
+      body: JSON.stringify(todoData),
+      headers: headers,
+      credentials: "include",
+      // statusCode: 200,
+    });
     const res = await response.json();
     setAllFetchedTodos(res.data.result);
   }, [authCtx.authUserId]);
@@ -91,15 +85,12 @@ const Todos = (props: Props) => {
       "Access-Control-Allow-Credentials": "true",
     };
 
-    const response = await fetch(
-      `${nextConfig.env?.backend_url}/user/add-todo`,
-      {
-        method: "POST",
-        body: JSON.stringify(newTodo),
-        headers: headers,
-        credentials: "include",
-      }
-    );
+    const response = await fetch(`${server}/user/add-todo`, {
+      method: "POST",
+      body: JSON.stringify(newTodo),
+      headers: headers,
+      credentials: "include",
+    });
     const res = await response.json();
 
     if (res.status === "successful") {

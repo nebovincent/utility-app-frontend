@@ -27,7 +27,7 @@ function TestingImage() {
     console.log(data);
 
     axios
-      .post(`${nextConfig.env?.backend_url}/user/upload-image`, data, {
+      .post(`${server}/user/upload-image`, data, {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },

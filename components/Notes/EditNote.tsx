@@ -41,16 +41,13 @@ function EditNote({ note }: Props) {
       "Access-Control-Allow-Credentials": "true",
     };
 
-    const response = await fetch(
-      `${nextConfig.env?.backend_url}/user/edit-note`,
-      {
-        method: "POST",
-        body: JSON.stringify(editedNote),
-        headers: headers,
-        credentials: "include",
-        // statusCode: 200,
-      }
-    );
+    const response = await fetch(`${server}/user/edit-note`, {
+      method: "POST",
+      body: JSON.stringify(editedNote),
+      headers: headers,
+      credentials: "include",
+      // statusCode: 200,
+    });
 
     const res = await response.json();
 

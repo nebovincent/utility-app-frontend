@@ -43,16 +43,13 @@ const EditUser = ({ user }: Props) => {
       "Access-Control-Allow-Credentials": "true",
     };
 
-    const response = await fetch(
-      `${nextConfig.env?.backend_url}/admin/edit-user-info`,
-      {
-        method: "POST",
-        body: JSON.stringify(userDetails),
-        headers: headers,
-        credentials: "include",
-        // statusCode: 200,
-      }
-    );
+    const response = await fetch(`${server}/admin/edit-user-info`, {
+      method: "POST",
+      body: JSON.stringify(userDetails),
+      headers: headers,
+      credentials: "include",
+      // statusCode: 200,
+    });
     const res = await response.json();
     if (res.status === "successful") {
       router.push("/Auth/Admin/UsersPage");

@@ -141,7 +141,7 @@ function Profile() {
       // using axios to make api call
 
       // const response: AxiosResponse = await axios.post(
-      //   `${nextConfig.env?.backend_url}/user/register-user`,
+      //   `${server}/user/register-user`,
       //   data,
       //   {
       //     headers: {
@@ -156,15 +156,12 @@ function Profile() {
 
       // using fetch to make api call
 
-      const response = await fetch(
-        `${nextConfig.env?.backend_url}/user/update-profile`,
-        {
-          method: "POST",
-          body: data,
-          // no header needed for using fetch in this situation
-          credentials: "include",
-        }
-      );
+      const response = await fetch(`${server}/user/update-profile`, {
+        method: "POST",
+        body: data,
+        // no header needed for using fetch in this situation
+        credentials: "include",
+      });
       const res = await response.json();
 
       // using fetch to make api call

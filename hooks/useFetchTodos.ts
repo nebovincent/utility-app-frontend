@@ -16,16 +16,13 @@ const useFetchTodos = async () => {
     "Access-Control-Allow-Credentials": "true",
   };
 
-  const response = await fetch(
-    `${nextConfig.env?.backend_url}/user/get-all-todos`,
-    {
-      method: "POST",
-      body: JSON.stringify(user_id),
-      headers: headers,
-      credentials: "include",
-      // statusCode: 200,
-    }
-  );
+  const response = await fetch(`${server}/user/get-all-todos`, {
+    method: "POST",
+    body: JSON.stringify(user_id),
+    headers: headers,
+    credentials: "include",
+    // statusCode: 200,
+  });
   const res = await response.json();
 
   const todos = await res.data.result;

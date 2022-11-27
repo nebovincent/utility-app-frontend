@@ -90,16 +90,13 @@ function ProfileChangePassword() {
         "Access-Control-Allow-Methods": "POST,PATCH,OPTIONS",
         "Access-Control-Allow-Credentials": "true",
       };
-      const response = await fetch(
-        `${nextConfig.env?.backend_url}/user/profile-change-password`,
-        {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: headers,
-          credentials: "include",
-          // statusCode: 200,
-        }
-      );
+      const response = await fetch(`${server}/user/profile-change-password`, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: headers,
+        credentials: "include",
+        // statusCode: 200,
+      });
       const res = await response.json();
       console.log(res);
       if (res.status === "successful") {
