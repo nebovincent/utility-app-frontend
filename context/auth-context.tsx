@@ -126,6 +126,7 @@ export const AuthContextProvider = ({ children }: Props) => {
     }
 
     setAuthLoadingState(false);
+    console.log("get cookie checked");
   };
 
   // fetching all users globally for admin
