@@ -150,9 +150,9 @@ export const AuthContextProvider = ({ children }: Props) => {
   // fetching all users globally for admin
 
   // useEffect for checking for browser cookie
-  useEffect(() => {
-    getCookie();
-  });
+  // useEffect(() => {
+  //   getCookie();
+  // });
   // useEffect for checking for browser cookie
 
   //Generally checking for cookie and setting state
