@@ -155,6 +155,12 @@ export const AuthContextProvider = ({ children }: Props) => {
   // });
   // useEffect for checking for browser cookie
 
+  // check if user is still authenticated
+  if (isLoggedIn === true) {
+    const checkAuth = setTimeout(getCookie, 1000 * 60 * 60);
+  }
+  // check if user is still authenticated
+
   //Generally checking for cookie and setting state
 
   // login handler
