@@ -100,10 +100,11 @@ function Profile() {
       errors.address = true;
     }
 
-    if (fileSize > 1048576) {
+    if (fileSize > 15048576) {
       errors.profilePhoto.sizeError = true;
     }
     // 1048576 for 1mb
+    // 15048576 for 15mb
     if (
       errors.name === false &&
       errors.email.emailIsEntered === true &&
@@ -518,7 +519,7 @@ function Profile() {
                   </div>
                   {formErrorState.profilePhoto.sizeError && (
                     <p className={classes.formErrors}>
-                      Image too large! Must not exceed 1mb limit.
+                      Image too large! Must not exceed 15mb limit.
                     </p>
                   )}
                   {formErrorState.profilePhoto.typeError && (
