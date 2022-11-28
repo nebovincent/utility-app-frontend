@@ -9,7 +9,7 @@
 
 .main {
     position: relative;
-    z-index: 100 !important;
+    /* z-index: 100 !important; */
 }
 
 .menu__container {
@@ -48,7 +48,7 @@
 }
 
 .menu__dropdown_card {
-    z-index: 100 !important;
+    /* z-index: 100 !important; */
 }
 
 
