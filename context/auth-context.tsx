@@ -25,7 +25,7 @@ const AuthContext = React.createContext({
     phoneNumber: "",
     address: "",
     dateOfBirth: "",
-    profilePicture: nextConfig?.env?.default_profile_img,
+    profilePicture: "",
   },
   authLoadingState: true,
   reqLoadingState: false,
