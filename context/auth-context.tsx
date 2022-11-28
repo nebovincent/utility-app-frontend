@@ -51,7 +51,7 @@ export const AuthContextProvider = ({ children }: Props) => {
     phoneNumber: "",
     address: "",
     dateOfBirth: "",
-    profilePicture: nextConfig?.env?.default_profile_img,
+    profilePicture: nextConfig?.env?.default_profile_img || "",
   });
   const [authLoadingState, setAuthLoadingState] = useState(true);
   const [reqLoadingState, setReqLoadingState] = useState(false);
@@ -237,7 +237,7 @@ export const AuthContextProvider = ({ children }: Props) => {
           phoneNumber: "",
           address: "",
           dateOfBirth: "",
-          profilePicture: nextConfig?.env?.default_profile_img,
+          profilePicture: nextConfig?.env?.default_profile_img || "",
         });
 
         router.push("/");
