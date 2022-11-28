@@ -13,12 +13,14 @@ const nextConfig = {
     appUrl: process.env.NEXT_PUBLIC_URL,
     backend_url: process.env.NEXT_PUBLIC_BACKEND_URL,
     profilePictureLink: `${process.env.NEXT_PUBLIC_BACKEND_URL}/uploads/profiles/`,
+    cloudinary_cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+    default_profile_img: process.env.NEXT_PUBLIC_DEFAULT_PROFILE_IMG,
   },
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
   images: {
-    domains: ["localhost"],
+    domains: ["localhost", "res.cloudinary.com"],
   },
 };
 

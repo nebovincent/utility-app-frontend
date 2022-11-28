@@ -7,7 +7,7 @@ import { server } from "config/index";
 const AuthContext = React.createContext({
   userRole: "user",
   userIsActivated: false,
-  userProfilePicture: "defaultProfilePicture.png",
+  userProfilePicture: nextConfig?.env?.default_profile_img,
   isLoggedIn: false,
   onLogout: () => {},
   onLoginHandler: (data: userLoginDetails) => {},
@@ -25,7 +25,7 @@ const AuthContext = React.createContext({
     phoneNumber: "",
     address: "",
     dateOfBirth: "",
-    profilePicture: "defaultProfilePicture.png",
+    profilePicture: nextConfig?.env?.default_profile_img,
   },
   authLoadingState: true,
   reqLoadingState: false,
@@ -37,7 +37,7 @@ export const AuthContextProvider = ({ children }: Props) => {
   const [userRole, setUserRole] = useState("user");
   const [userIsActivated, setUserIsActivated] = useState(false);
   const [userProfilePicture, setUserProfilePicture] = useState(
-    "defaultProfilePicture.png"
+    nextConfig?.env?.default_profile_img
   );
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authUserId, setAuthUserId] = useState("");
@@ -51,7 +51,7 @@ export const AuthContextProvider = ({ children }: Props) => {
     phoneNumber: "",
     address: "",
     dateOfBirth: "",
-    profilePicture: "defaultProfilePicture.png",
+    profilePicture: nextConfig?.env?.default_profile_img,
   });
   const [authLoadingState, setAuthLoadingState] = useState(true);
   const [reqLoadingState, setReqLoadingState] = useState(false);
@@ -91,7 +91,7 @@ export const AuthContextProvider = ({ children }: Props) => {
       setUserIsActivated(res.data.user_isActivated);
       res.data.user_profilePicture
         ? setUserProfilePicture(res.data.user_profilePicture)
-        : setUserProfilePicture("defaultProfilePicture.png");
+        : setUserProfilePicture(nextConfig?.env?.default_profile_img);
 
       setIsLoggedIn(true);
       // setSuccessMessage(res.data.message);
@@ -151,9 +151,9 @@ export const AuthContextProvider = ({ children }: Props) => {
   // fetching all users globally for admin
 
   // useEffect for checking for browser cookie
-  // useEffect(() => {
-  //   getCookie();
-  // });
+  useEffect(() => {
+    getCookie();
+  }, []);
   // useEffect for checking for browser cookie
 
   // check if user is still authenticated
@@ -227,7 +227,7 @@ export const AuthContextProvider = ({ children }: Props) => {
         setAuthUserId("");
         setUserRole("user");
         setUserIsActivated(false);
-        setUserProfilePicture("defaultProfilePicture.png");
+        setUserProfilePicture(nextConfig?.env?.default_profile_img);
         setIsLoggedIn(false);
         setSuccessMessage(res.data.message);
         setAuthUserProfileDetails({
@@ -237,7 +237,7 @@ export const AuthContextProvider = ({ children }: Props) => {
           phoneNumber: "",
           address: "",
           dateOfBirth: "",
-          profilePicture: "defaultProfilePicture.png",
+          profilePicture: nextConfig?.env?.default_profile_img,
         });
 
         router.push("/");

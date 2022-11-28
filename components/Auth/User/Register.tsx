@@ -195,6 +195,24 @@ const Register = (props: Props) => {
       // using fetch to make api call
 
       if (res.status === "successful") {
+        setFormErrorState({
+          name: false,
+          email: {
+            emailIsEntered: true,
+            emailIsValid: true,
+            emailExists: false,
+          },
+          username: { usernameIsEntered: true, usernameExists: false },
+          phoneNumber: false,
+          profilePhoto: { sizeError: false, typeError: false },
+          address: false,
+          password: {
+            passwordIsEntered: true,
+            passwordIsValid: true,
+            passwordNotMatched: false,
+          },
+          random: "",
+        });
         setSuccessResponse(res.data.message);
 
         // router.push("/Auth/User/LoginPage?usercreated=usercreated");

@@ -247,9 +247,17 @@ function Profile() {
                   onSubmit={saveProfileDetails}
                 >
                   <div>
-                    <Image
+                    {/* <Image
                       className={classes.rounded_div_profile}
                       src={`${nextConfig?.env?.backend_url}/uploads/profiles/${authCtx.authUserProfileDetails.profilePicture}`}
+                      alt="Profile"
+                      width="100"
+                      height="100"
+                      objectFit="cover"
+                    /> */}
+                    <Image
+                      className={classes.rounded_div_profile}
+                      src={authCtx?.authUserProfileDetails?.profilePicture}
                       alt="Profile"
                       width="100"
                       height="100"
@@ -390,7 +398,6 @@ function Profile() {
                       </div>
                     </div>
                   </div>
-
                   <div>
                     <div className={classes.form_fieldset}>
                       <div className={classes.form_fieldset_child}>
@@ -439,7 +446,6 @@ function Profile() {
                       </div>
                     </div>
                   </div>
-
                   <div>
                     <div className={classes.form_fieldset}>
                       <div className={classes.form_fieldset_child}>
