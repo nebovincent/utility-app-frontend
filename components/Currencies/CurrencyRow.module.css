@@ -15,6 +15,7 @@
     border: 2px solid #922B21;
     border-radius: 10px;
     cursor: pointer;
+    color: black !important;
 }
 
 @media screen and (min-device-width: 1211px) {
