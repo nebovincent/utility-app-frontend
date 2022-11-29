@@ -80,8 +80,8 @@ function ProfileChangePassword() {
       authCtx.reqLoadingStateHandler();
 
       const data = {
-        uuiduniqueId: uniqueId,
-        email: userEmail,
+        uuiduniqueId: router?.query?.uniqueId,
+        email: router?.query?.email,
         newPassword: passwordInput.newPassword,
       };
       const headers = {
