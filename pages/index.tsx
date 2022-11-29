@@ -14,15 +14,15 @@ const Home: NextPage = () => {
       <Head>
         <title>Utility NextJS Website</title>
         <meta name="description" content="Created by Vincent Nebo" />
-        <link rel="icon" href="/favicon-dark.png" />
+        <link rel="icon" type="image/x-icon" href="/favicon-dark.png" />
       </Head>
       {/* SEO OPTIMIZATION WITH REACT HELMET ASYNC */}
       <HelmetProvider>
         <Helmet>
           <title>Utility NextJS Website</title>
-          <link rel="canonical" href="" />
+          <link rel="canonical" type="image/x-icon" href="/favicon-dark.png" />
           {/* special metatag */}
-          <link rel="canonical" href="" />
+          <link rel="canonical" type="image/x-icon" href="/favicon-dark.png" />
           <meta property="og:locale" content="en_US" />
           <meta property="og:type" content="website" />
           <meta

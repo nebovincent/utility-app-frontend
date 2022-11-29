@@ -27,6 +27,7 @@ function SingleNote({ note }: Props) {
             onClick={() => {
               router.back();
             }}
+            className={classes.notes__container_goBack}
           >
             <span style={{ fontSize: "100px" }}>&#9198;</span>
             <h4>Go Back</h4>

@@ -84,6 +84,9 @@
     border: 2px solid#641E16 !important;
     padding: 5px 10px;
     border-radius: 20px;
+    cursor: pointer !important;
+
+
 }
 
 .largerScreenNav_main_area ul li:hover,
