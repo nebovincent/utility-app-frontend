@@ -39,6 +39,16 @@
     font-family: 'Gentium Book Plus', serif;
 }
 
+.successMsg {
+    color: green;
+    text-align: center;
+}
+
+.errorsMsg {
+    color: red;
+    text-align: center;
+}
+
 .notes__container_child {
 
     margin: auto;
@@ -76,6 +86,8 @@
 .note__desc_area p:hover {
     color: #922B21;
 }
+
+
 
 .notes__actions {
     display: flex;

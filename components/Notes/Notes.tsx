@@ -17,6 +17,16 @@ const Notes = () => {
   const router = useRouter();
   const utilCtx = useContext(UtilContext);
   const authCtx = useContext(AuthContext);
+  const [errorStates, setErrorStates] = useState({
+    saveNotes: "",
+    fetchNotes: "",
+    deleteNote: "",
+  });
+  const [successStates, setSuccessStates] = useState({
+    saveNotes: "",
+    fetchNotes: "",
+    deleteNote: "",
+  });
 
   // useEffect to check if user is still authenticated
 
@@ -46,7 +56,28 @@ const Notes = () => {
     const res = await response.json();
 
     if (res.status === "successful") {
+      setSuccessStates({
+        saveNotes: "",
+        fetchNotes: "",
+        deleteNote: res.data.message,
+      });
+      setErrorStates({
+        saveNotes: "",
+        fetchNotes: "",
+        deleteNote: "",
+      });
       onFetchNotes();
+    } else {
+      setSuccessStates({
+        saveNotes: "",
+        fetchNotes: "",
+        deleteNote: "",
+      });
+      setErrorStates({
+        saveNotes: "",
+        fetchNotes: "",
+        deleteNote: res.data.message,
+      });
     }
   };
 
@@ -67,6 +98,31 @@ const Notes = () => {
       credentials: "include",
     });
     const res = await response.json();
+    if (res.status === "successful") {
+      setSuccessStates({
+        saveNotes: "",
+        fetchNotes: "",
+        // fetchNotes: res.data.message,
+        deleteNote: "",
+      });
+      setErrorStates({
+        saveNotes: "",
+        fetchNotes: "",
+        deleteNote: "",
+      });
+      onFetchNotes();
+    } else {
+      setSuccessStates({
+        saveNotes: "",
+        fetchNotes: "",
+        deleteNote: "",
+      });
+      setErrorStates({
+        saveNotes: "",
+        fetchNotes: res.data.message,
+        deleteNote: "",
+      });
+    }
 
     setAllFetchedNotes(res.data.result);
   }, [authCtx.authUserId]);
@@ -98,7 +154,28 @@ const Notes = () => {
     const res = await response.json();
 
     if (res.status === "successful") {
+      setSuccessStates({
+        saveNotes: res.data.message,
+        fetchNotes: "",
+        deleteNote: "",
+      });
+      setErrorStates({
+        saveNotes: "",
+        fetchNotes: "",
+        deleteNote: "",
+      });
       onFetchNotes();
+    } else {
+      setSuccessStates({
+        saveNotes: "",
+        fetchNotes: "",
+        deleteNote: "",
+      });
+      setErrorStates({
+        saveNotes: res.data.message,
+        fetchNotes: "",
+        deleteNote: "",
+      });
     }
     authCtx.reqLoadingStateResetHandler();
   };
@@ -150,7 +227,31 @@ const Notes = () => {
               <div className={classes.notes__container}>
                 <h3>List of your notes</h3>
                 <h5>Click on the note&apos;s description to view full note</h5>
+                {successStates.deleteNote && (
+                  <p className={classes.successMsg}>
+                    {successStates.deleteNote}
+                  </p>
+                )}
+                {successStates.saveNotes && (
+                  <p className={classes.successMsg}>
+                    {successStates.saveNotes}
+                  </p>
+                )}
+                {/* {successStates.fetchNotes && (
+                  <p className={classes.successMsg}>
+                    {successStates.fetchNotes}
+                  </p>
+                )} */}
 
+                {errorStates.deleteNote && (
+                  <p className={classes.errorMsg}>{errorStates.deleteNote}</p>
+                )}
+                {errorStates.deleteNote && (
+                  <p className={classes.errorMsg}>{errorStates.deleteNote}</p>
+                )}
+                {errorStates.deleteNote && (
+                  <p className={classes.errorMsg}>{errorStates.deleteNote}</p>
+                )}
                 <div className={classes.notes__container_child_area_wrapper}>
                   {currentItems.map((note) => (
                     <div
