@@ -38,7 +38,7 @@ const Login = () => {
     e.preventDefault();
 
     const data = {
-      emailOrUserName: formData.emailOrUserName,
+      emailOrUserName: formData.emailOrUserName.toLowerCase(),
       password: formData.password,
     };
 

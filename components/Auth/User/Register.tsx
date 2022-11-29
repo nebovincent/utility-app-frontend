@@ -157,8 +157,8 @@ const Register = (props: Props) => {
       // appending all form data both file and strings
       const data = new FormData();
       data.append("name", registrationDetails.name);
-      data.append("email", registrationDetails.email);
-      data.append("username", registrationDetails.username);
+      data.append("email", registrationDetails.email.toLowerCase());
+      data.append("username", registrationDetails.username.toLowerCase());
       data.append("phoneNumber", registrationDetails.phoneNumber);
       data.append("dateOfBirth", DOB);
       data.append("address", registrationDetails.address);
