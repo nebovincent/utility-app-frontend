@@ -14,9 +14,17 @@ const CurrencyRow = (props: Props) => {
   return (
     <div className={classes.main}>
       <input type="number" step="1" value={amount} onChange={onChangeAmount} />
-      <select value={selectedCurrency} onChange={onChangeCurrency}>
+      <select
+        value={selectedCurrency}
+        onChange={onChangeCurrency}
+        style={{ color: "black !important" }}
+      >
         {currencyOptions?.map((option) => (
-          <option key={option} value={option}>
+          <option
+            key={option}
+            value={option}
+            style={{ color: "black !important" }}
+          >
             {option}
           </option>
         ))}
