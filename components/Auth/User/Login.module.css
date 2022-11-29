@@ -118,6 +118,7 @@
     color: white !important;
     margin-top: 50px !important;
     padding: 0px 0px;
+    cursor: pointer;
 }
 
 .not_a_user_yet span {

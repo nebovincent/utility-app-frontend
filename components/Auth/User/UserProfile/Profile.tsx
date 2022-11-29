@@ -537,7 +537,7 @@ function Profile() {
                 <div className={classes.changepassword_main}>
                   <Link href="/Auth/User/UserProfile/ChangePassword/ProfileChangePasswordPage">
                     <h5>
-                      Want to change your password? <br />
+                      Want to reset your password? <br />
                       <span>Click here</span>
                     </h5>
                   </Link>
