@@ -84,7 +84,7 @@ export const AuthContextProvider = ({ children }: Props) => {
       credentials: "include",
     });
     const res = await response.json();
-
+    console.log("getting cookies again");
     if (res.status === "successful") {
       setAuthUserId(res.data.user_id);
       setUserRole(res.data.user_role);

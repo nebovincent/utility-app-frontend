@@ -62,8 +62,15 @@
 
 .login__form_main_input_password {}
 
+.login__form_main_input_password:focus {
+    padding: 0px 4px;
+}
+
+
 .login__form_main_input:focus {
     border: 3px solid #922B21;
+    padding: 4px 8px;
+
 }
 
 
