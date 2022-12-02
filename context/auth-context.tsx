@@ -93,7 +93,7 @@ export const AuthContextProvider = ({ children }: Props) => {
       credentials: "include",
     });
     const res = await response.json();
-    console.log("getting cookies again");
+    console.log("getting cookies again for getCookie FN");
     if (res.status === "successful") {
       setAuthUserId(res.data.user_id);
       setUserRole(res.data.user_role);
@@ -119,7 +119,6 @@ export const AuthContextProvider = ({ children }: Props) => {
         profilePictureUUID: res.data.user_profilePictureUUID,
       });
       // setting profile details
-      // setAuthLoadingState(false);
     } else {
       if (res.data.message === "Not Authorized, please log in") {
         setAuthUserId("");
@@ -136,7 +135,6 @@ export const AuthContextProvider = ({ children }: Props) => {
     }
 
     setAuthLoadingState(false);
-    console.log("get cookie checked");
   };
 
   // fetching all users globally for admin
@@ -176,7 +174,7 @@ export const AuthContextProvider = ({ children }: Props) => {
         credentials: "include",
       });
       const res = await response.json();
-      console.log("getting cookies again");
+      console.log("getting cookies again for checkForCookie FN");
       if (res.status === "successful") {
         setAuthUserId(res.data.user_id);
         setUserRole(res.data.user_role);
@@ -218,6 +216,25 @@ export const AuthContextProvider = ({ children }: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // useEffect for checking for browser cookie
+
+  // check for cookie one hour after a login has been initiated
+  useEffect(() => {
+    if (isLoggedIn === true) {
+      setTimeout(() => {
+        getCookie();
+        console.log("RAN AFTER AN HOUR");
+      }, 3600000);
+      console.log("fn will run after an hour");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    getCookie();
+    console.log("fn will run cus route changed");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router]);
+  // check for cookie one hour after a login has been initiated
 
   //Generally checking for cookie and setting state
 

@@ -3,7 +3,8 @@ const path = require("path");
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-  reactStrictMode: true,
+  // reactStrictMode: true,
+  reactStrictMode: false,
   env: {
     visualCrossingWeatherApi:
       process.env.NEXT_PUBLIC_VISUAL_CROSSING_WEATHER_API,
