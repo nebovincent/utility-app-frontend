@@ -13,7 +13,13 @@ const CurrencyRow = (props: Props) => {
   } = props;
   return (
     <div className={classes.main}>
-      <input type="number" step="1" value={amount} onChange={onChangeAmount} />
+      <input
+        type="number"
+        step="1"
+        value={amount}
+        onChange={onChangeAmount}
+        onWheel={(event) => event.currentTarget.blur()}
+      />
       <select
         value={selectedCurrency}
         onChange={onChangeCurrency}

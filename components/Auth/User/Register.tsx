@@ -434,6 +434,7 @@ const Register = (props: Props) => {
                     phoneNumber: e.target.value,
                   });
                 }}
+                onWheel={(event) => event.currentTarget.blur()}
               />
 
               <label>Date of Birth</label>
