@@ -37,9 +37,19 @@ const Login = () => {
   const onLogin = async (e: React.SyntheticEvent) => {
     e.preventDefault();
 
+    // using regular expression via replace method to remove all white spaces before and after the data strings and also transforming the username/email data to lowercase
+
+    const userEmail = formData.emailOrUserName
+      .toLowerCase()
+      .replace(/^\s+|\s+$/gm, "");
+
+    const userPassword = formData.password.replace(/^\s+|\s+$/gm, "");
+
+    // using regular expression via replace method to remove all white spaces before and after the data strings and also transforming the username/email data to lowercase
+
     const data = {
-      emailOrUserName: formData.emailOrUserName.toLowerCase(),
-      password: formData.password,
+      emailOrUserName: userEmail,
+      password: userPassword,
     };
 
     authCtx.onLoginHandler(data);
@@ -66,7 +76,10 @@ const Login = () => {
                 required
                 type="text"
                 onChange={(e) => {
-                  setFormData({ ...formData, emailOrUserName: e.target.value });
+                  setFormData({
+                    ...formData,
+                    emailOrUserName: e.target.value,
+                  });
                 }}
                 onFocus={(e) => {
                   authCtx.resetErrorMsg();
@@ -79,7 +92,10 @@ const Login = () => {
                   required
                   type={passwordShow ? "text" : "password"}
                   onChange={(e) => {
-                    setFormData({ ...formData, password: e.target.value });
+                    setFormData({
+                      ...formData,
+                      password: e.target.value,
+                    });
                   }}
                   onFocus={(e) => {
                     authCtx.resetErrorMsg();
