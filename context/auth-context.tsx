@@ -215,6 +215,7 @@ export const AuthContextProvider = ({ children }: Props) => {
       setAuthLoadingState(false);
     };
     checkForCookie();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // useEffect for checking for browser cookie
 

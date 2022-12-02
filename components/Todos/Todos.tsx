@@ -158,6 +158,7 @@ const Todos = (props: Props) => {
   // useEffect to fetch all Todos for a particular user
   useEffect(() => {
     onFetchTodos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // useEffect to fetch all Todos for a particular user
 
