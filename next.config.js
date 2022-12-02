@@ -20,7 +20,7 @@ const nextConfig = {
     includePaths: [path.join(__dirname, "styles")],
   },
   images: {
-    domains: ["localhost", "res.cloudinary.com"],
+    domains: ["localhost", "res.cloudinary.com", "ucarecdn.com"],
   },
 };
 

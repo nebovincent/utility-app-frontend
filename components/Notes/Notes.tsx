@@ -21,6 +21,7 @@ const Notes = () => {
     saveNotes: "",
     fetchNotes: "",
     deleteNote: "",
+    randomError: "",
   });
   const [successStates, setSuccessStates] = useState({
     saveNotes: "",
@@ -65,6 +66,7 @@ const Notes = () => {
         saveNotes: "",
         fetchNotes: "",
         deleteNote: "",
+        randomError: "",
       });
       onFetchNotes();
     } else {
@@ -77,7 +79,20 @@ const Notes = () => {
         saveNotes: "",
         fetchNotes: "",
         deleteNote: res.data.message,
+        randomError: "",
       });
+      if (
+        res.data.message === "Not Authorized, please log in" ||
+        res.data.message === "Session Expired please login again"
+      ) {
+        setErrorStates({
+          saveNotes: res.data.message,
+          fetchNotes: "",
+          deleteNote: "",
+          randomError: res.data.message,
+        });
+        setTimeout(() => router.push("/Auth/User/LoginPage"), 5000);
+      }
     }
   };
 
@@ -109,8 +124,9 @@ const Notes = () => {
         saveNotes: "",
         fetchNotes: "",
         deleteNote: "",
+        randomError: "",
       });
-      onFetchNotes();
+      setAllFetchedNotes(res.data.result);
     } else {
       setSuccessStates({
         saveNotes: "",
@@ -121,11 +137,23 @@ const Notes = () => {
         saveNotes: "",
         fetchNotes: res.data.message,
         deleteNote: "",
+        randomError: "",
       });
+      if (
+        res.data.message === "Not Authorized, please log in" ||
+        res.data.message === "Session Expired please login again"
+      ) {
+        setErrorStates({
+          saveNotes: res.data.message,
+          fetchNotes: "",
+          deleteNote: "",
+          randomError: res.data.message,
+        });
+        setTimeout(() => router.push("/Auth/User/LoginPage"), 5000);
+      }
     }
-
-    setAllFetchedNotes(res.data.result);
-  }, [authCtx.authUserId]);
+    authCtx.authLoadingStateResetHandler();
+  }, [authCtx, router]);
 
   //fetch all notes for a user
 
@@ -163,6 +191,7 @@ const Notes = () => {
         saveNotes: "",
         fetchNotes: "",
         deleteNote: "",
+        randomError: "",
       });
       onFetchNotes();
     } else {
@@ -175,7 +204,20 @@ const Notes = () => {
         saveNotes: res.data.message,
         fetchNotes: "",
         deleteNote: "",
+        randomError: "",
       });
+      if (
+        res.data.message === "Not Authorized, please log in" ||
+        res.data.message === "Session Expired please login again"
+      ) {
+        setErrorStates({
+          saveNotes: res.data.message,
+          fetchNotes: "",
+          deleteNote: "",
+          randomError: res.data.message,
+        });
+        setTimeout(() => router.push("/Auth/User/LoginPage"), 5000);
+      }
     }
     authCtx.reqLoadingStateResetHandler();
   };
@@ -223,7 +265,7 @@ const Notes = () => {
           <Container className={classes.notes__main_container}>
             <AddNotes onSaveNote={onSaveNote} />
 
-            {allFetchedNotes.length > 0 && (
+            {allFetchedNotes?.length > 0 && (
               <div className={classes.notes__container}>
                 <h3>List of your notes</h3>
                 <h5>Click on the note&apos;s description to view full note</h5>
@@ -237,12 +279,6 @@ const Notes = () => {
                     {successStates.saveNotes}
                   </p>
                 )}
-                {/* {successStates.fetchNotes && (
-                  <p className={classes.successMsg}>
-                    {successStates.fetchNotes}
-                  </p>
-                )} */}
-
                 {errorStates.deleteNote && (
                   <p className={classes.errorMsg}>{errorStates.deleteNote}</p>
                 )}
@@ -251,6 +287,9 @@ const Notes = () => {
                 )}
                 {errorStates.deleteNote && (
                   <p className={classes.errorMsg}>{errorStates.deleteNote}</p>
+                )}
+                {errorStates.randomError && (
+                  <p className={classes.errorMsg}>{errorStates.randomError}</p>
                 )}
                 <div className={classes.notes__container_child_area_wrapper}>
                   {currentItems.map((note) => (

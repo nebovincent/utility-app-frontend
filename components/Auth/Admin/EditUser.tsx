@@ -16,6 +16,7 @@ const EditUser = ({ user }: Props) => {
   const authCtx = useContext(AuthContext);
   const utilCtx = useContext(UtilContext);
   const router = useRouter();
+  const [errorResponse, setErrorResponse] = useState("");
 
   // useEffect to check if user is still authenticated
 
@@ -53,14 +54,26 @@ const EditUser = ({ user }: Props) => {
     const res = await response.json();
     if (res.status === "successful") {
       router.push("/Auth/Admin/UsersPage");
+    } else {
+      if (
+        res.data.message === "Not Authorized, please log in" ||
+        res.data.message === "Session Expired please login again"
+      ) {
+        setErrorResponse(res.data.message);
+        setTimeout(() => router.push("/Auth/User/LoginPage"), 5000);
+      } else {
+        setErrorResponse(res.data.message);
+      }
     }
   };
   return (
     <ProtectedRoutes>
       <Container className={classes.register__main_container}>
         <div className={classes.register__main}>
+          {errorResponse && <p className={classes.errorRes}>{errorResponse}</p>}
           <h1>Edit</h1>
           <h3>Edit User Details</h3>
+
           <form
             className={classes.register__form_main}
             onSubmit={saveEditUserDetails}

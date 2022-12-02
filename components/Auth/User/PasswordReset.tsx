@@ -15,6 +15,7 @@ function ProfileChangePassword() {
   const authCtx = useContext(AuthContext);
   const utilCtx = useContext(UtilContext);
   const router = useRouter();
+  const [expirationTime, setExpirationTime] = useState(null);
 
   const [userEmail, setUserEmail] = useState<string | string[]>("");
   const [uniqueId, setUniqueId] = useState<string | string[]>("");
@@ -83,6 +84,7 @@ function ProfileChangePassword() {
         uuiduniqueId: router?.query?.uniqueId,
         email: router?.query?.email,
         newPassword: passwordInput.newPassword,
+        expirationTime: expirationTime,
       };
       const headers = {
         "Content-Type": "application/json",
@@ -144,6 +146,7 @@ function ProfileChangePassword() {
         console.log(now, "now");
         const expiresAt = Date.parse(res.data.expiresAt);
         console.log(expiresAt, "expires at");
+        setExpirationTime(res.data.expiresAt);
         if (expiresAt > now) {
           console.log("still valid");
           utilCtx.resetLoadingStateHandler();

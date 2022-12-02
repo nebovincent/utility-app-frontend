@@ -10,8 +10,11 @@ import ProtectedRoutes from "components/utility/ProtectedRoutes";
 import { v4 as uuidv4 } from "uuid";
 import PageLoader from "components/utility/PageLoader";
 import { server } from "config/index";
+import { useRouter } from "next/router";
+//
 
 function Profile() {
+  const router = useRouter();
   const authCtx = useContext(AuthContext);
   const [file, setFile] = useState<any>(null);
   const [fileSize, setFileSize] = useState<any>(null);
@@ -25,6 +28,7 @@ function Profile() {
     address: authCtx.authUserProfileDetails.address,
     dateOfBirth: authCtx.authUserProfileDetails.dateOfBirth,
     profilePicture: authCtx.authUserProfileDetails.profilePicture,
+    profilePictureUUID: authCtx.authUserProfileDetails.profilePictureUUID,
   });
 
   const [editUserProfileDetails, setEditUserProfileDetails] = useState({
@@ -70,6 +74,7 @@ function Profile() {
       address: authCtx.authUserProfileDetails.address,
       dateOfBirth: authCtx.authUserProfileDetails.dateOfBirth,
       profilePicture: authCtx.authUserProfileDetails.profilePicture,
+      profilePictureUUID: authCtx.authUserProfileDetails.profilePictureUUID,
     });
   }, [authCtx.authUserProfileDetails]);
 
@@ -100,11 +105,11 @@ function Profile() {
       errors.address = true;
     }
 
-    if (fileSize > 15048576) {
+    if (fileSize > 10048576) {
       errors.profilePhoto.sizeError = true;
     }
     // 1048576 for 1mb
-    // 15048576 for 15mb
+    // 10048576 for 10mb
     if (
       errors.name === false &&
       errors.email.emailIsEntered === true &&
@@ -135,6 +140,10 @@ function Profile() {
       data.append("dateOfBirth", DOB);
       data.append("address", authUserProfileDetails.address);
       data.append("profilePicture", authUserProfileDetails.profilePicture);
+      data.append(
+        "profilePictureUUID",
+        authUserProfileDetails.profilePictureUUID
+      );
       data.append("uniqueId", uniqueId);
       data.append("avatar", file);
       // appending all form data both file and strings
@@ -170,7 +179,6 @@ function Profile() {
       if (res.status === "successful") {
         authCtx.getCookie();
         setSuccessResponse(res.data.message);
-
         setFile(null);
         setFileSize(null);
 
@@ -211,6 +219,15 @@ function Profile() {
             ...formErrorState,
             profilePhoto: { ...formErrorState.profilePhoto, typeError: true },
           });
+        } else if (
+          res.data.message === "Not Authorized, please log in" ||
+          res.data.message === "Session Expired please login again"
+        ) {
+          setFormErrorState({
+            ...formErrorState,
+            random: res.data.message,
+          });
+          setTimeout(() => router.push("/Auth/User/LoginPage"), 3000);
         } else {
           setFormErrorState({
             ...formErrorState,
@@ -225,7 +242,7 @@ function Profile() {
     authCtx.reqLoadingStateResetHandler();
     const timer = setTimeout(() => {
       setSuccessResponse("");
-    }, 5000);
+    }, 3000);
   };
 
   return (
@@ -246,16 +263,9 @@ function Profile() {
                 <form
                   className={classes.form_main}
                   onSubmit={saveProfileDetails}
+                  encType="multipart/form-data"
                 >
                   <div>
-                    {/* <Image
-                      className={classes.rounded_div_profile}
-                      src={`${nextConfig?.env?.backend_url}/uploads/profiles/${authCtx.authUserProfileDetails.profilePicture}`}
-                      alt="Profile"
-                      width="100"
-                      height="100"
-                      objectFit="cover"
-                    /> */}
                     <Image
                       className={classes.rounded_div_profile}
                       src={authCtx?.authUserProfileDetails?.profilePicture}
@@ -503,6 +513,7 @@ function Profile() {
 
                         <input
                           type="file"
+                          name="avatar"
                           onChange={handleFileChange}
                           onFocus={(e) => {
                             setFormErrorState({
@@ -519,7 +530,7 @@ function Profile() {
                   </div>
                   {formErrorState.profilePhoto.sizeError && (
                     <p className={classes.formErrors}>
-                      Image too large! Must not exceed 15mb limit.
+                      Image too large! Must not exceed 10mb limit.
                     </p>
                   )}
                   {formErrorState.profilePhoto.typeError && (

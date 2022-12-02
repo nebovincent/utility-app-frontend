@@ -26,11 +26,13 @@ const AuthContext = React.createContext({
     address: "",
     dateOfBirth: "",
     profilePicture: "",
+    profilePictureUUID: "",
   },
   authLoadingState: true,
   reqLoadingState: false,
   reqLoadingStateHandler: () => {},
   reqLoadingStateResetHandler: () => {},
+  authLoadingStateResetHandler: () => {},
 });
 
 export const AuthContextProvider = ({ children }: Props) => {
@@ -52,6 +54,7 @@ export const AuthContextProvider = ({ children }: Props) => {
     address: "",
     dateOfBirth: "",
     profilePicture: nextConfig?.env?.default_profile_img || "",
+    profilePictureUUID: "",
   });
   const [authLoadingState, setAuthLoadingState] = useState(true);
   const [reqLoadingState, setReqLoadingState] = useState(false);
@@ -64,6 +67,12 @@ export const AuthContextProvider = ({ children }: Props) => {
     setReqLoadingState(false);
   };
   // req loading state handler
+
+  // auth loading state reset handler
+  const authLoadingStateResetHandler = () => {
+    setAuthLoadingState(false);
+  };
+  // auth loading state reset handler
 
   // Router
   const router = useRouter();
@@ -107,6 +116,7 @@ export const AuthContextProvider = ({ children }: Props) => {
         address: res.data.user_address,
         dateOfBirth: res.data.user_dateOfBirth,
         profilePicture: res.data.user_profilePicture,
+        profilePictureUUID: res.data.user_profilePictureUUID,
       });
       // setting profile details
       // setAuthLoadingState(false);
@@ -152,15 +162,61 @@ export const AuthContextProvider = ({ children }: Props) => {
 
   // useEffect for checking for browser cookie
   useEffect(() => {
-    getCookie();
+    const checkForCookie = async () => {
+      const headers = {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST,PATCH,OPTIONS",
+        "Access-Control-Allow-Credentials": "true",
+      };
+
+      const response = await fetch(`${server}/user/getcookie`, {
+        method: "GET",
+        headers: headers,
+        credentials: "include",
+      });
+      const res = await response.json();
+      console.log("getting cookies again");
+      if (res.status === "successful") {
+        setAuthUserId(res.data.user_id);
+        setUserRole(res.data.user_role);
+        setUserIsActivated(res.data.user_isActivated);
+        res.data.user_profilePicture
+          ? setUserProfilePicture(res.data.user_profilePicture)
+          : setUserProfilePicture(nextConfig?.env?.default_profile_img);
+
+        setIsLoggedIn(true);
+        // setting profile details
+        setAuthUserProfileDetails({
+          ...authUserProfileDetails,
+          id: res.data.user_id,
+          name: res.data.user_name,
+          email: res.data.user_email,
+          username: res.data.user_username,
+          phoneNumber: res.data.user_phoneNumber,
+          address: res.data.user_address,
+          dateOfBirth: res.data.user_dateOfBirth,
+          profilePicture: res.data.user_profilePicture,
+          profilePictureUUID: res.data.user_profilePictureUUID,
+        });
+        // setting profile details
+      } else {
+        if (res.data.message === "Not Authorized, please log in") {
+          setAuthUserId("");
+          setIsLoggedIn(false);
+        } else if (res.data.message === "Session Expired please login again") {
+          setAuthUserId("");
+          setIsLoggedIn(false);
+        } else {
+          setAuthUserId("");
+          setIsLoggedIn(false);
+        }
+      }
+      setAuthLoadingState(false);
+    };
+    checkForCookie();
   }, []);
   // useEffect for checking for browser cookie
-
-  // check if user is still authenticated
-  if (isLoggedIn === true) {
-    const checkAuth = setTimeout(getCookie, 1000 * 60 * 60);
-  }
-  // check if user is still authenticated
 
   //Generally checking for cookie and setting state
 
@@ -184,7 +240,25 @@ export const AuthContextProvider = ({ children }: Props) => {
     const res = await response.json();
 
     if (res.status === "successful") {
-      getCookie();
+      setAuthUserId(res.data.id);
+      setUserRole(res.data.role);
+      setUserIsActivated(res.data.isActivated);
+      res.data.profilePicture
+        ? setUserProfilePicture(res.data.profilePicture)
+        : setUserProfilePicture(nextConfig?.env?.default_profile_img);
+      setIsLoggedIn(true);
+      setAuthUserProfileDetails({
+        ...authUserProfileDetails,
+        id: res.data.id,
+        name: res.data.name,
+        email: res.data.email,
+        username: res.data.username,
+        phoneNumber: res.data.phoneNumber,
+        address: res.data.address,
+        dateOfBirth: res.data.dateOfBirth,
+        profilePicture: res.data.profilePicture,
+        profilePictureUUID: res.data.profilePictureUUID,
+      });
       router.push("/?userloggedin=userloggedin");
       setSuccessMessage(res.data.message);
     } else {
@@ -238,6 +312,7 @@ export const AuthContextProvider = ({ children }: Props) => {
           address: "",
           dateOfBirth: "",
           profilePicture: nextConfig?.env?.default_profile_img || "",
+          profilePictureUUID: "",
         });
 
         router.push("/");
@@ -278,6 +353,7 @@ export const AuthContextProvider = ({ children }: Props) => {
         reqLoadingState: reqLoadingState,
         reqLoadingStateHandler: reqLoadingStateHandler,
         reqLoadingStateResetHandler: reqLoadingStateResetHandler,
+        authLoadingStateResetHandler: authLoadingStateResetHandler,
       }}
     >
       {children}

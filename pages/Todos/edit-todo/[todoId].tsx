@@ -42,7 +42,7 @@ export async function getStaticPaths(context: any) {
 
   return {
     fallback: "blocking",
-    paths: todos.map((todo: any) => ({
+    paths: todos?.map((todo: any) => ({
       params: { todoId: todo._id.toString() },
     })),
   };

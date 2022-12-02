@@ -17,6 +17,17 @@ const Todos = (props: Props) => {
   const utilCtx = useContext(UtilContext);
   const authCtx = useContext(AuthContext);
   const router = useRouter();
+  const [errorStates, setErrorStates] = useState({
+    saveTodos: "",
+    fetchTodos: "",
+    deleteTodo: "",
+    randomError: "",
+  });
+  const [successStates, setSuccessStates] = useState({
+    saveTodos: "",
+    fetchTodos: "",
+    deleteTodo: "",
+  });
 
   const [allFetchedTodos, setAllFetchedTodos] = useState<fetchedTodos[]>([]);
 
@@ -41,11 +52,46 @@ const Todos = (props: Props) => {
     const res = await response.json();
 
     if (res.status === "successful") {
+      setSuccessStates({
+        saveTodos: "",
+        fetchTodos: "",
+        deleteTodo: res.data.message,
+      });
+      setErrorStates({
+        saveTodos: "",
+        fetchTodos: "",
+        deleteTodo: "",
+        randomError: "",
+      });
       onFetchTodos();
+    } else {
+      setSuccessStates({
+        saveTodos: "",
+        fetchTodos: "",
+        deleteTodo: "",
+      });
+      setErrorStates({
+        saveTodos: "",
+        fetchTodos: "",
+        deleteTodo: res.data.message,
+        randomError: "",
+      });
+      if (
+        res.data.message === "Not Authorized, please log in" ||
+        res.data.message === "Session Expired please login again"
+      ) {
+        setErrorStates({
+          saveTodos: "",
+          fetchTodos: "",
+          deleteTodo: "",
+          randomError: res.data.message,
+        });
+        setTimeout(() => router.push("/Auth/User/LoginPage"), 5000);
+      }
     }
   };
 
-  //fetch all notes for a user
+  //fetch all Todos for a user
 
   const onFetchTodos = useCallback(async () => {
     const todoData = { userId: authCtx.authUserId };
@@ -65,16 +111,55 @@ const Todos = (props: Props) => {
       // statusCode: 200,
     });
     const res = await response.json();
-    setAllFetchedTodos(res.data.result);
-  }, [authCtx.authUserId]);
+    if (res.status === "successful") {
+      setSuccessStates({
+        saveTodos: "",
+        fetchTodos: "",
+        // fetchTodos: res.data.message,
+        deleteTodo: "",
+      });
+      setErrorStates({
+        saveTodos: "",
+        fetchTodos: "",
+        deleteTodo: "",
+        randomError: "",
+      });
+      setAllFetchedTodos(res.data.result);
+    } else {
+      setSuccessStates({
+        saveTodos: "",
+        fetchTodos: "",
+        deleteTodo: "",
+      });
+      setErrorStates({
+        saveTodos: "",
+        fetchTodos: res.data.message,
+        deleteTodo: "",
+        randomError: "",
+      });
+      if (
+        res.data.message === "Not Authorized, please log in" ||
+        res.data.message === "Session Expired please login again"
+      ) {
+        setErrorStates({
+          saveTodos: "",
+          fetchTodos: "",
+          deleteTodo: "",
+          randomError: res.data.message,
+        });
+        setTimeout(() => router.push("/Auth/User/LoginPage"), 5000);
+      }
+    }
+    authCtx.authLoadingStateResetHandler();
+  }, [router, authCtx]);
 
-  //fetch all notes for a user
+  //fetch all Todos for a user
 
-  // useEffect to fetch all notes for a particular user
+  // useEffect to fetch all Todos for a particular user
   useEffect(() => {
     onFetchTodos();
-  }, [onFetchTodos]);
-  // useEffect to fetch all notes for a particular user
+  }, []);
+  // useEffect to fetch all Todos for a particular user
 
   const onSaveTodo = async (newTodo: Todo) => {
     authCtx.reqLoadingStateHandler();
@@ -94,7 +179,42 @@ const Todos = (props: Props) => {
     const res = await response.json();
 
     if (res.status === "successful") {
+      setSuccessStates({
+        saveTodos: res.data.message,
+        fetchTodos: "",
+        deleteTodo: "",
+      });
+      setErrorStates({
+        saveTodos: "",
+        fetchTodos: "",
+        deleteTodo: "",
+        randomError: "",
+      });
       onFetchTodos();
+    } else {
+      setSuccessStates({
+        saveTodos: "",
+        fetchTodos: "",
+        deleteTodo: "",
+      });
+      setErrorStates({
+        saveTodos: res.data.message,
+        fetchTodos: "",
+        deleteTodo: "",
+        randomError: "",
+      });
+      if (
+        res.data.message === "Not Authorized, please log in" ||
+        res.data.message === "Session Expired please login again"
+      ) {
+        setErrorStates({
+          saveTodos: "",
+          fetchTodos: "",
+          deleteTodo: "",
+          randomError: res.data.message,
+        });
+        setTimeout(() => router.push("/Auth/User/LoginPage"), 5000);
+      }
     }
     authCtx.reqLoadingStateResetHandler();
   };
@@ -108,7 +228,7 @@ const Todos = (props: Props) => {
     const filteredTodos = allFetchedTodos.filter((todos) =>
       todos.name?.includes(searchInput)
     );
-    if (filteredTodos.length === 0) {
+    if (filteredTodos?.length === 0) {
       console.log("no match");
     } else {
       setAllFetchedTodos(filteredTodos);
@@ -135,7 +255,7 @@ const Todos = (props: Props) => {
               className={classes.addTodo__main}
               onSaveTodo={onSaveTodo}
             />
-            {allFetchedTodos.length > 0 && (
+            {allFetchedTodos?.length > 0 && (
               <div className={classes.table__container}>
                 <div className={classes.search_main_area}>
                   <h5>Search for a todo by name</h5>
@@ -146,6 +266,28 @@ const Todos = (props: Props) => {
                     onFocus={resetSearchInput}
                   />
                 </div>
+                {successStates.deleteTodo && (
+                  <p className={classes.successMsg}>
+                    {successStates.deleteTodo}
+                  </p>
+                )}
+                {successStates.saveTodos && (
+                  <p className={classes.successMsg}>
+                    {successStates.saveTodos}
+                  </p>
+                )}
+                {errorStates.deleteTodo && (
+                  <p className={classes.errorMsg}>{errorStates.deleteTodo}</p>
+                )}
+                {errorStates.deleteTodo && (
+                  <p className={classes.errorMsg}>{errorStates.deleteTodo}</p>
+                )}
+                {errorStates.deleteTodo && (
+                  <p className={classes.errorMsg}>{errorStates.deleteTodo}</p>
+                )}
+                {errorStates.randomError && (
+                  <p className={classes.errorMsg}>{errorStates.randomError}</p>
+                )}
 
                 <h3>List of Todos</h3>
 

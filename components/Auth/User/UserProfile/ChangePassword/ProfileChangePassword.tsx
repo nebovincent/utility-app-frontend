@@ -6,8 +6,10 @@ import ProtectedRoutes from "components/utility/ProtectedRoutes";
 import nextConfig from "next.config";
 import AuthContext from "context/auth-context";
 import { server } from "config/index";
+import { useRouter } from "next/router";
 
 function ProfileChangePassword() {
+  const router = useRouter();
   const authCtx = useContext(AuthContext);
   const strongRegex = new RegExp(
     "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})"
@@ -111,6 +113,12 @@ function ProfileChangePassword() {
           ...formErrors,
           currentPassword: { ...formErrors.currentPassword, incorrect: true },
         });
+      } else if (
+        res.data.message === "Not Authorized, please log in" ||
+        res.data.message === "Session Expired please login again"
+      ) {
+        setFormErrors({ ...formErrors, random: res.data.message });
+        setTimeout(() => router.push("/Auth/User/LoginPage"), 5000);
       } else {
         setFormErrors({ ...formErrors, random: res.data.message });
       }

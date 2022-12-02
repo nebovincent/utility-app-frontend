@@ -123,11 +123,11 @@ const Register = (props: Props) => {
     if (registrationDetails.password !== registrationDetails.confirmPassword) {
       errors.password = { ...errors.password, passwordNotMatched: true };
     }
-    if (fileSize > 15048576) {
+    if (fileSize > 10048576) {
       errors.profilePhoto.sizeError = true;
     }
     // 1048576 1mb;
-    // 15048576 15mb;
+    // 10048576 10mb;
 
     if (
       errors.name === false &&
@@ -216,6 +216,11 @@ const Register = (props: Props) => {
         });
         setSuccessResponse(res.data.message);
 
+        authCtx.getCookie();
+
+        setTimeout(() => {
+          router.push("/Auth/User/LoginPage?usercreated=usercreated");
+        }, 3000);
         // router.push("/Auth/User/LoginPage?usercreated=usercreated");
 
         setRegistrationDetails({
@@ -447,7 +452,7 @@ const Register = (props: Props) => {
               <p className={classes.optional}>This field is optional</p>
               {formErrorState.profilePhoto.sizeError && (
                 <p className={classes.formErrors}>
-                  Image too large! Must not exceed 15mb limit.
+                  Image too large! Must not exceed 10mb limit.
                 </p>
               )}
               {formErrorState.profilePhoto.typeError && (

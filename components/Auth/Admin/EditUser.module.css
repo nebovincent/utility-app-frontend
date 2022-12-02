@@ -15,6 +15,10 @@
     margin: auto;
 }
 
+.errorRes {
+    color: red;
+    text-align: center;
+}
 
 .register__main h1 {
     text-align: center;

@@ -1,6 +1,6 @@
 import UsersTable from "components/utility/UsersTable";
 import classes from "components/Auth/Admin/Users.module.css";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useCallback } from "react";
 import Container from "components/utility/Container";
 import { allUsersType } from "types/types";
 import nextConfig from "next.config";
@@ -21,7 +21,7 @@ const Users: React.FC = () => {
 
   // useEffect to check if user is still authenticated
 
-  const fetchAllUsers = async () => {
+  const fetchAllUsers = useCallback(async () => {
     const headers = {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
@@ -36,9 +36,17 @@ const Users: React.FC = () => {
       // statusCode: 200,
     });
     const users = await response.json();
-
-    setAllUsers(users.data.result);
-  };
+    if (users.status === "successful") {
+      setAllUsers(users.data.result);
+    } else {
+      if (
+        users.data.message === "Not Authorized, please log in" ||
+        users.data.message === "Session Expired please login again"
+      ) {
+        setTimeout(() => router.push("/Auth/User/LoginPage"), 5000);
+      }
+    }
+  }, [router]);
 
   const onDeleteUser = async (e: any) => {
     setErrorReport("");
@@ -69,6 +77,12 @@ const Users: React.FC = () => {
       }, 5000);
     } else {
       setErrorReport(res.data.message);
+      if (
+        res.data.message === "Not Authorized, please log in" ||
+        res.data.message === "Session Expired please login again"
+      ) {
+        setTimeout(() => router.push("/Auth/User/LoginPage"), 5000);
+      }
     }
   };
 
@@ -101,6 +115,12 @@ const Users: React.FC = () => {
       }, 5000);
     } else {
       setErrorReport(res.data.message);
+      if (
+        res.data.message === "Not Authorized, please log in" ||
+        res.data.message === "Session Expired please login again"
+      ) {
+        setTimeout(() => router.push("/Auth/User/LoginPage"), 5000);
+      }
     }
   };
   const onDeactivateUser = async (e: any) => {
@@ -132,6 +152,12 @@ const Users: React.FC = () => {
       }, 5000);
     } else {
       setErrorReport(res.data.message);
+      if (
+        res.data.message === "Not Authorized, please log in" ||
+        res.data.message === "Session Expired please login again"
+      ) {
+        setTimeout(() => router.push("/Auth/User/LoginPage"), 5000);
+      }
     }
   };
   const onMakeUserAdmin = async (id: any, role: any) => {
@@ -164,12 +190,18 @@ const Users: React.FC = () => {
       }, 5000);
     } else {
       setErrorReport(res.data.message);
+      if (
+        res.data.message === "Not Authorized, please log in" ||
+        res.data.message === "Session Expired please login again"
+      ) {
+        setTimeout(() => router.push("/Auth/User/LoginPage"), 5000);
+      }
     }
   };
 
   useEffect(() => {
     fetchAllUsers();
-  }, []);
+  }, [fetchAllUsers]);
 
   return (
     <ProtectedRoutes>
