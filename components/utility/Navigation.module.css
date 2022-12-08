@@ -23,6 +23,7 @@
 .logo__container {
     font-size: 40px;
     color: #7B241C;
+    display: flex;
 }
 
 .menu__container:first-child {
