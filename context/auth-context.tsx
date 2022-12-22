@@ -214,7 +214,7 @@ export const AuthContextProvider = ({ children }: Props) => {
     };
     checkForCookie();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [router]);
   // useEffect for checking for browser cookie
 
   // check for cookie one hour after a login has been initiated
@@ -229,11 +229,11 @@ export const AuthContextProvider = ({ children }: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
-  useEffect(() => {
-    getCookie();
-    console.log("fn will run cus route changed");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router]);
+  // useEffect(() => {
+  //   getCookie();
+  //   console.log("fn will run cus route changed");
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [router]);
   // check for cookie one hour after a login has been initiated
 
   //Generally checking for cookie and setting state
