@@ -218,16 +218,16 @@ export const AuthContextProvider = ({ children }: Props) => {
   // useEffect for checking for browser cookie
 
   // check for cookie one hour after a login has been initiated
-  useEffect(() => {
-    if (isLoggedIn === true) {
-      setTimeout(() => {
-        getCookie();
-        console.log("RAN AFTER AN HOUR");
-      }, 3600000);
-      console.log("fn will run after an hour");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoggedIn]);
+  // useEffect(() => {
+  //   if (isLoggedIn === true) {
+  //     setTimeout(() => {
+  //       getCookie();
+  //       console.log("RAN AFTER AN HOUR");
+  //     }, 3600000);
+  //     console.log("fn will run after an hour");
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [isLoggedIn]);
 
   // useEffect(() => {
   //   getCookie();
